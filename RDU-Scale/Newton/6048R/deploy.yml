@@ -1,0 +1,10 @@
+parameter_defaults:
+  BlockStorageCount: 0
+  ComputeCount: 0
+  ControllerCount: 1
+  SwiftStorageCount: 0
+  CephStorageCount: 0
+
+  6048RComputeCount: 1
+
+  Overcloud6048RComputeFlavor: compute

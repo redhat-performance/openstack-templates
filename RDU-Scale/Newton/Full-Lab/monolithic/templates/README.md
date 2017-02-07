@@ -1,4 +1,4 @@
-# RDU-Scale Templates
+# RDU-Scale Full Lab Templates
 
 ## deploy.yml
 
