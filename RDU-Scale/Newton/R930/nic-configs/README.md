@@ -1,4 +1,4 @@
-# RDUScale nic-configs
+# RDU-Scale nic-configs
 
 Given the Scale lab has multiple system types, each connected different (some the same). We need to have customized templates per-node to give us greater flexibility and interface utilization.
 
@@ -8,13 +8,13 @@ Given the Scale lab has multiple system types, each connected different (some th
 The R930s have 4 interfaces attached, our templates will deploy the following config:
 
 #### Controller
-- br-storage - StorageNetwork, StorageMgmtNetwork
-- - em2
-- br-tenant - TenantNetwork
-- - p1p1
-- br-ex - ControlPlane
-- - em1
-- p1p2 - Carried InternalAPISubnet
+
+|   Bridge   |  Interface     |   Networks     |
+|------------|:--------------:|---------------:|
+| br-storage | em2            | StorageNetwork, StorageMgmtNetwork |
+| br-tenant  | p1p1           | TenantNetwork   |
+| br-ex      | em1            | ControlPlane    |
+|            | p1p2           | Carried InternalAPISubnet |
 
 #### Compute
 - br-storage - StorageNetwork
@@ -24,11 +24,3 @@ The R930s have 4 interfaces attached, our templates will deploy the following co
 - br-ex - ControlPlane
 - - em1
 - p1p2 - Carried InternalAPISubnet
-
-#### Ceph
-- Not detailed here
-
-### R730
-### R630
-### R620
-### 6048R
