@@ -1,0 +1,2 @@
+# RDUScale openstack-templates
+

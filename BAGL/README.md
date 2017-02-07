@@ -1,0 +1,2 @@
+# BAGL openstack-templates
+
