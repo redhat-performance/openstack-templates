@@ -1,6 +1,0 @@
-parameter_defaults:
-  ControllerCount: 1
-  R930ComputeCount: 1
-
-  OvercloudR930ControlFlavor: controller
-  OvercloudR930ComputeFlavor: compute
