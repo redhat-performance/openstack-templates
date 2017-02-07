@@ -101,7 +101,7 @@
 - name: R930Compute
   countdefault: 1
   hostnameformatdefault: '%stackname%-r930compute-%index%'
-  servicesdefault:
+  ServicesDefault:
     - OS::TripleO::Services::CACerts
     - OS::TripleO::Services::CephClient
     - OS::TripleO::Services::CephExternal
