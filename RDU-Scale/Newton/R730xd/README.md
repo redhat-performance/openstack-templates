@@ -6,8 +6,7 @@ command:
  openstack overcloud deploy --templates -e
 /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml
 -e templates/network-environment.yaml -e templates/nodes.yaml -r
-templates/roles_data.yaml -e templates/neutron-settings.yaml --ntp-server
-clock.redhat.com
+templates/roles_data.yaml --ntp-server clock.redhat.com
 ```
 
 It is assumed that the command is executed from /home/stack and the
@@ -59,8 +58,3 @@ sets the number of these composable compute nodes you want in your deplyoment.
 example but you could set it to anything you want as long as you have a
 corresponding flavor already created and tagged to the nodes you want to use.
 
-## neutron-settings.yaml
-
-This is just an extra file for some Neutron settings. If this confuses you, you
-can safely ignore passing this in the deploy command.
- 
