@@ -1,0 +1,6 @@
+parameter_defaults:
+  NeutronExternalNetworkBridge: "''"
+  NeutronBridgeMappings: "''"
+  NeutronEnableIsolatedMetadata: 'True'
+  NeutronNetworkType: 'vxlan,gre,vlan,flat'
+  NeutronTunnelTypes: 'vxlan,gre'
