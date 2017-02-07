@@ -17,10 +17,10 @@ The R930s have 4 interfaces attached, our templates will deploy the following co
 |            | p1p2           | InternalAPISubnet |
 
 #### Compute
-- br-storage - StorageNetwork
-- - em2
-- br-tenant - TenantNetwork
-- - p1p1
-- br-ex - ControlPlane
-- - em1
-- p1p2 - Carried InternalAPISubnet
+
+|   Bridge   |  Interface     |   Networks     |
+|------------|:--------------:|---------------:|
+| br-storage | em2            | StorageNetwork |
+| br-tenant  | p1p1           | TenantNetwork  |
+| br-ex      | em1            | ControlPlane   |
+|            | p1p2           | InternalAPISubnet |
