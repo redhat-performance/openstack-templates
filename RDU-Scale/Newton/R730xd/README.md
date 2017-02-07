@@ -5,7 +5,7 @@ command:
 ```
  openstack overcloud deploy --templates -e
 /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml
--e templates/network-environment.yaml -e templates/nodes.yaml -r
+-e templates/network-environment.yaml -e templates/deploy.yaml -r
 templates/roles_data.yaml --ntp-server clock.redhat.com
 ```
 
@@ -50,7 +50,7 @@ OS::TripleO::R730Compute::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-h
 OS::TripleO::R730Compute::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
 ```
 
-## nodes.yaml
+## deploy.yaml
 
 This sets the default parameters for node flavor and count. *R730ComputeCount*
 sets the number of these composable compute nodes you want in your deplyoment.
