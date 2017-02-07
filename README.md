@@ -6,7 +6,7 @@ Each lab will exist within its own directory.
 
 ## Thanks
 
-This wouldn't have been possible without the work from the Performance and Scale Team members listed below.
+This non-trivial work wouldn't have been possible without the work from the Performance and Scale Team members listed below. Working with a poorly documented feature FTW
 
 - Alex Krzos
 - Sai Malleni
