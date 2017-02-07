@@ -102,54 +102,27 @@
   countdefault: 1
   hostnameformatdefault: '%stackname%-r930compute-%index%'
   servicesdefault:
-    - os::tripleo::services::cacerts
-    - os::tripleo::services::cephclient
-    - os::tripleo::services::cephexternal
-    - os::tripleo::services::timezone
-    - os::tripleo::services::ntp
-    - os::tripleo::services::snmp
-    - os::tripleo::services::novacompute
-    - os::tripleo::services::novalibvirt
-    - os::tripleo::services::kernel
-    - os::tripleo::services::computeneutroncoreplugin
-    - os::tripleo::services::computeneutronovsagent
-    - os::tripleo::services::computeceilometeragent
-    - os::tripleo::services::computeneutronl3agent
-    - os::tripleo::services::computeneutronmetadataagent
-    - os::tripleo::services::tripleopackages
-    - os::tripleo::services::tripleofirewall
-    - os::tripleo::services::neutronsriovagent
-    - os::tripleo::services::opendaylightovs
-    - os::tripleo::services::sensuclient
-    - os::tripleo::services::fluentdclient
-    - os::tripleo::services::viphosts
-
-
-- name: compute
-  countdefault: 1
-  hostnameformatdefault: '%stackname%-compute-%index%'
-  servicesdefault:
-    - os::tripleo::services::cacerts
-    - os::tripleo::services::cephclient
-    - os::tripleo::services::cephexternal
-    - os::tripleo::services::timezone
-    - os::tripleo::services::ntp
-    - os::tripleo::services::snmp
-    - os::tripleo::services::novacompute
-    - os::tripleo::services::novalibvirt
-    - os::tripleo::services::kernel
-    - os::tripleo::services::computeneutroncoreplugin
-    - os::tripleo::services::computeneutronovsagent
-    - os::tripleo::services::computeceilometeragent
-    - os::tripleo::services::computeneutronl3agent
-    - os::tripleo::services::computeneutronmetadataagent
-    - os::tripleo::services::tripleopackages
-    - os::tripleo::services::tripleofirewall
-    - os::tripleo::services::neutronsriovagent
-    - os::tripleo::services::opendaylightovs
-    - os::tripleo::services::sensuclient
-    - os::tripleo::services::fluentdclient
-    - os::tripleo::services::viphosts
+    - OS::TripleO::Services::CACerts
+    - OS::TripleO::Services::CephClient
+    - OS::TripleO::Services::CephExternal
+    - OS::TripleO::Services::Timezone
+    - OS::TripleO::Services::Ntp
+    - OS::TripleO::Services::Snmp
+    - OS::TripleO::Services::NovaCompute
+    - OS::TripleO::Services::NovaLibvirt
+    - OS::TripleO::Services::Kernel
+    - OS::TripleO::Services::ComputeNeutronCorePlugin
+    - OS::TripleO::Services::ComputeNeutronOvsAgent
+    - OS::TripleO::Services::ComputeCeilometerAgent
+    - OS::TripleO::Services::ComputeNeutronL3Agent
+    - OS::TripleO::Services::ComputeNeutronMetadataAgent
+    - OS::TripleO::Services::TripleoPackages
+    - OS::TripleO::Services::TripleoFirewall
+    - OS::TripleO::Services::NeutronSriovAgent
+    - OS::TripleO::Services::OpenDaylightOvs
+    - OS::TripleO::Services::SensuClient
+    - OS::TripleO::Services::FluentdClient
+    - OS::TripleO::Services::VipHosts
 
 - name: BlockStorage
   ServicesDefault:
