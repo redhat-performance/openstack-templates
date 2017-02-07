@@ -14,7 +14,7 @@ The R930s have 4 interfaces attached, our templates will deploy the following co
 | br-storage | em2            | StorageNetwork, StorageMgmtNetwork |
 | br-tenant  | p1p1           | TenantNetwork   |
 | br-ex      | em1            | ControlPlane    |
-|            | p1p2           | Carried InternalAPISubnet |
+|            | p1p2           | InternalAPISubnet |
 
 #### Compute
 - br-storage - StorageNetwork
