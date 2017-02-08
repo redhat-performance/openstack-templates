@@ -191,39 +191,6 @@
     - OS::TripleO::Services::FluentdClient
     - OS::TripleO::Services::VipHosts
 
-- name: 6048RBlockStorage
-  CountDefault: 0
-  HostnameFormatDefault: '%stackname%-6048Rblockstorage-%index%'
-  ServicesDefault:
-    - OS::TripleO::Services::CACerts
-    - OS::TripleO::Services::BlockStorageCinderVolume
-    - OS::TripleO::Services::Kernel
-    - OS::TripleO::Services::Ntp
-    - OS::TripleO::Services::Timezone
-    - OS::TripleO::Services::Snmp
-    - OS::TripleO::Services::TripleoPackages
-    - OS::TripleO::Services::TripleoFirewall
-    - OS::TripleO::Services::SensuClient
-    - OS::TripleO::Services::FluentdClient
-    - OS::TripleO::Services::VipHosts
-
-- name: 6048RObjectStorage
-  CountDefault: 0
-  HostnameFormatDefault: '%stackname%-6048Robjectstorage-%index%'
-  ServicesDefault:
-    - OS::TripleO::Services::CACerts
-    - OS::TripleO::Services::Kernel
-    - OS::TripleO::Services::Ntp
-    - OS::TripleO::Services::SwiftStorage
-    - OS::TripleO::Services::SwiftRingBuilder
-    - OS::TripleO::Services::Snmp
-    - OS::TripleO::Services::Timezone
-    - OS::TripleO::Services::TripleoPackages
-    - OS::TripleO::Services::TripleoFirewall
-    - OS::TripleO::Services::SensuClient
-    - OS::TripleO::Services::FluentdClient
-    - OS::TripleO::Services::VipHosts
-
 - name: 6048RCephStorage
   CountDefault: 0
   HostnameFormatDefault: '%stackname%-6048Rcephstorage-%index%'

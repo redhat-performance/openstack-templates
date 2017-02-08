@@ -1,13 +1,14 @@
 resource_registry:
-  OS::TripleO::AllNodes::SoftwareConfig: /usr/share/openstack-tripleo-heat-templates/puppet/all-nodes-config.yaml
+  # Controller Role must stay as "Controller" for now.
+  OS::TripleO::Controller::Net::SoftwareConfig: /home/stack/templates/nic-configs/6048r-controller.yaml
 
   OS::TripleO::BlockStorage::Net::SoftwareConfig: /home/stack/templates/nic-configs/cinder-storage.yaml
   OS::TripleO::Compute::Net::SoftwareConfig: /home/stack/templates/nic-configs/compute.yaml
-  OS::TripleO::Controller::Net::SoftwareConfig: /home/stack/templates/nic-configs/controller.yaml
   OS::TripleO::ObjectStorage::Net::SoftwareConfig: /home/stack/templates/nic-configs/swift-storage.yaml
   OS::TripleO::CephStorage::Net::SoftwareConfig: /home/stack/templates/nic-configs/ceph-storage.yaml
 
   OS::TripleO::6048RCompute::Net::SoftwareConfig: /home/stack/templates/nic-configs/6048r-compute.yaml
+  OS::TripleO::6048RCephStorage::Net::SoftwareConfig: /home/stack/templates/nic-configs/6048r-ceph-storage.yaml
 
   OS::TripleO::6048RCompute::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
   OS::TripleO::6048RCompute::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/internal_api.yaml
@@ -16,7 +17,7 @@ resource_registry:
   OS::TripleO::6048RCompute::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
 
 parameter_defaults:
-  NeutronExternalNetworkBridge: "''"
+  NeutronExternalNetworkBridge: "'br-ex'"
   InternalApiNetCidr: 172.16.0.0/24
   TenantNetCidr: 172.17.0.0/24
   StorageNetCidr: 172.18.0.0/24
