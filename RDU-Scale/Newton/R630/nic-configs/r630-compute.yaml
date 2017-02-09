@@ -135,7 +135,7 @@ resources:
                 
             -
               type: interface
-              name: p2p1
+              name: em3
               use_dhcp: false
               addresses:
                 -
