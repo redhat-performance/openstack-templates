@@ -55,7 +55,7 @@ OS::TripleO::R730Compute::Ports::TenantPort: /usr/share/openstack-tripleo-heat-t
 This environment file is necessary for configuring the ceph nodes. */dev/sda* is
 set as the root device using the serial number from the ironic introspection
 data for each of the nodes desired to be ceph storage nodes. The NVME disk is
-set as the jorunal and all others disks are configured to be OSDs. This template
+set as the journal and all others disks are configured to be OSDs. This template
 also calls the *wipe-disks.yaml* template in *firstboot* folder to set the GPT
 disk labels required by ceph.
 
