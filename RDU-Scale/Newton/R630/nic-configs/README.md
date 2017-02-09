@@ -12,15 +12,15 @@ The R630s have 4 interfaces attached, our templates will deploy the following co
 |   Bridge   |  Interface     |   Networks     |
 |------------|:--------------:|---------------:|
 | br-storage | em1            | StorageNetwork, StorageMgmtNetwork |
-| br-tenant  | em3            | TenantNetwork   |
+| br-tenant  | em4            | TenantNetwork   |
 | br-ex      | em2            | ControlPlane    |
-|            | em4            | InternalAPISubnet |
+|            | em3            | InternalAPISubnet |
 
 #### Compute
 
 |   Bridge   |  Interface     |   Networks     |
 |------------|:--------------:|---------------:|
 | br-storage | em1            | StorageNetwork |
-| br-tenant  | em3            | TenantNetwork  |
+| br-tenant  | em4            | TenantNetwork  |
 | br-ex      | em2            | ControlPlane   |
-|            | em4            | InternalAPISubnet |
+|            | em3            | InternalAPISubnet |

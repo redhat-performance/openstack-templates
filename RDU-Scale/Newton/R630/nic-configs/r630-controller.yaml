@@ -114,7 +114,7 @@ resources:
               members:
                 -
                   type: interface
-                  name: p2p1
+                  name: em4
                   primary: true
                 -
                   type: vlan
@@ -165,7 +165,7 @@ resources:
               addresses:
                 -
                   ip_netmask: {get_param: InternalApiIpSubnet}
-          
+
 
 outputs:
   OS::stack_id:

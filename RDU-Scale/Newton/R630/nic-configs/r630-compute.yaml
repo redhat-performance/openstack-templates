@@ -82,7 +82,7 @@ resources:
           network_config:
             -
               type: ovs_bridge
-              name: br-storage 
+              name: br-storage
               members:
                 -
                   type: interface
@@ -96,11 +96,11 @@ resources:
                       ip_netmask: {get_param: StorageIpSubnet}
             -
               type: ovs_bridge
-              name: br-tenant 
+              name: br-tenant
               members:
                 -
                   type: interface
-                  name: p2p1
+                  name: em4
                   primary: true
                 -
                   type: vlan
@@ -130,9 +130,9 @@ resources:
               members:
                 -
                   type: interface
-                  name: em2 
+                  name: em2
                   primary: true
-                
+
             -
               type: interface
               name: em3
@@ -140,7 +140,7 @@ resources:
               addresses:
                 -
                   ip_netmask: {get_param: InternalApiIpSubnet}
-          
+
 
 outputs:
   OS::stack_id:
