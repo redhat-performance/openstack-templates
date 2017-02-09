@@ -31,4 +31,3 @@ The R730xds have 4 interfaces attached, our templates will deploy the following 
 |------------|:--------------:|----------------------------------- --:|
 | br-storage | em1            | StorageNetwork, StorageMgmtNetwork    |
 | br-ex      | em2            | ControlPlane                          |
-
