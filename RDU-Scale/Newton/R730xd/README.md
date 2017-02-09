@@ -40,7 +40,7 @@ Since we defined a new role type *R730Compute*, we need to tell the installer
 not only where it can find the nic-config templates for that role type, but also 
 how the ports on each of the networks in the role needs to be configured. The
 section below is the one that does this magic of correctly linking the role to
-its network configuration.
+its network configuration. 
 
 ```
 OS::TripleO::R730Compute::Net::SoftwareConfig: /home/stack/templates/nic-configs/r730-compute.yaml
@@ -50,6 +50,8 @@ OS::TripleO::R730Compute::Ports::StoragePort: /usr/share/openstack-tripleo-heat-
 OS::TripleO::R730Compute::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
 OS::TripleO::R730Compute::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
 ```
+Along similar lines, we need to define port mapping if using a composable Ceph role.
+
 ## storage-environment.yaml
 
 This environment file is necessary for configuring the ceph nodes. */dev/sda* is
