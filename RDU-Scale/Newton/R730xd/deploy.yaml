@@ -2,11 +2,11 @@ parameter_defaults:
   ControllerCount: 3
   ComputeCount: 0
   #R730ControllerCount: 3
-  R730ComputeCount: 9
-  CephStorageCount: 0
+  R730ComputeCount: 6
+  R730CephStorageCount: 3
   ObjectStorageCount: 0
 
   OvercloudControlFlavor: control
   OvercloudR730ComputeFlavor: compute
-  OvercloudCephStorageFlavor: ceph-storage
+  OvercloudR730CephStorageFlavor: ceph-storage
   OvercloudSwiftStorageFlavor: swift-storage

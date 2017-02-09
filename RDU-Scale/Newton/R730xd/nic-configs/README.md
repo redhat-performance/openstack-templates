@@ -24,3 +24,11 @@ The R730xds have 4 interfaces attached, our templates will deploy the following 
 | br-tenant  | p6p1           | TenantNetwork     |
 | br-ex      | em2            | ControlPlane      |
 |            | p6p2           | InternalAPISubnet |
+
+#### Ceph
+
+|   Bridge   |  Interface     |   Networks                            |
+|------------|:--------------:|----------------------------------- --:|
+| br-storage | em1            | StorageNetwork, StorageMgmtNetwork    |
+| br-ex      | em2            | ControlPlane                          |
+

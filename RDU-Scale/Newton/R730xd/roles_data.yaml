@@ -151,7 +151,7 @@
     - OS::TripleO::Services::FluentdClient
     - OS::TripleO::Services::VipHosts
 
-- name: CephStorage
+- name: R730CephStorage
   ServicesDefault:
     - OS::TripleO::Services::CACerts
     - OS::TripleO::Services::CephOSD

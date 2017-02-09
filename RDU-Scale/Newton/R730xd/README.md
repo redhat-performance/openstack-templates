@@ -1,12 +1,12 @@
 # Templates for deploying overcloud with R730xd Node types
 
-These templates can be used for deploying an overcloud with the following deply
+These templates can be used for deploying an overcloud with the following deploy
 command:
 ```
  openstack overcloud deploy --templates -e
 /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml
--e templates/network-environment.yaml -e templates/deploy.yaml -r
-templates/roles_data.yaml --ntp-server clock.redhat.com
+-e templates/network-environment.yaml -e templates/storage-environment.yaml 
+-e templates/deploy.yaml -r templates/roles_data.yaml --ntp-server clock.redhat.com
 ```
 
 It is assumed that the command is executed from /home/stack and the
@@ -30,7 +30,8 @@ tenant network).
 ## roles_data.yaml
 
 This is the file where we define our composable *R730Compute* role. We have
-basically just replaced the *Compute* role with *R730Compute* role. Nothing else
+basically just replaced the *Compute* role with *R730Compute* role. For ceph
+nodes we replace *CephStorage* with *R730CephStorage*. Nothing else
 changes here.
 
 ## network-environment.yaml
@@ -49,6 +50,14 @@ OS::TripleO::R730Compute::Ports::StoragePort: /usr/share/openstack-tripleo-heat-
 OS::TripleO::R730Compute::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
 OS::TripleO::R730Compute::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
 ```
+## storage-environment.yaml
+
+This environment file is necessary for configuring the ceph nodes. */dev/sda* is
+set as the root device using the serial number from the ironic introspection
+data for each of the nodes desired to be ceph storage nodes. The NVME disk is
+set as the jorunal and all others disks are configured to be OSDs. This template
+also calls the *wipe-disks.yaml* template in *firstboot* folder to set the GPT
+disk labels required by ceph.
 
 ## deploy.yaml
 
@@ -56,5 +65,6 @@ This sets the default parameters for node flavor and count. *R730ComputeCount*
 sets the number of these composable compute nodes you want in your deplyoment.
 *OvercloudR730ComputeFlavor* sets the falvor. We set it to compute in our
 example but you could set it to anything you want as long as you have a
-corresponding flavor already created and tagged to the nodes you want to use.
+corresponding flavor already created and tagged to the nodes you want to use. We
+set the flavor and count of the composable ceph nodes in a similar manner.
 
