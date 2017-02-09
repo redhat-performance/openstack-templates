@@ -17,11 +17,9 @@
 # ServicesDefault: (list) optional default list of services to be deployed
 # on the role, defaults to an empty list. Sets the default for the
 # {{role.name}}Services parameter in overcloud.yaml
-#
 
 - name: Controller
   CountDefault: 1
-  hostnameformatdefault: '%stackname%-controller-%index%'
   ServicesDefault:
     - OS::TripleO::Services::CACerts
     - OS::TripleO::Services::CephMon
@@ -99,35 +97,9 @@
     - OS::TripleO::Services::VipHosts
 
 - name: R630Compute
-  countdefault: 1
-  hostnameformatdefault: '%stackname%-r630compute-%index%'
-  servicesdefault:
-    - OS::TripleO::Services::CACerts
-    - OS::TripleO::Services::CephClient
-    - OS::TripleO::Services::CephExternal
-    - OS::TripleO::Services::Timezone
-    - OS::TripleO::Services::Ntp
-    - OS::TripleO::Services::Snmp
-    - OS::TripleO::Services::NovaCompute
-    - OS::TripleO::Services::NovaLibvirt
-    - OS::TripleO::Services::Kernel
-    - OS::TripleO::Services::ComputeNeutronCorePlugin
-    - OS::TripleO::Services::ComputeNeutronOvsAgent
-    - OS::TripleO::Services::ComputeCeilometerAgent
-    - OS::TripleO::Services::ComputeNeutronL3Agent
-    - OS::TripleO::Services::ComputeNeutronMetadataAgent
-    - OS::TripleO::Services::TripleoPackages
-    - OS::TripleO::Services::TripleoFirewall
-    - OS::TripleO::Services::NeutronSriovAgent
-    - OS::TripleO::Services::OpenDaylightOvs
-    - OS::TripleO::Services::SensuClient
-    - OS::TripleO::Services::FluentdClient
-    - OS::TripleO::Services::VipHosts
-
-- name: compute
-  countdefault: 1
-  hostnameformatdefault: '%stackname%-compute-%index%'
-  servicesdefault:
+  CountDefault: 1
+  HostnameFormatDefault: '%stackname%-compute-%index%'
+  ServicesDefault:
     - OS::TripleO::Services::CACerts
     - OS::TripleO::Services::CephClient
     - OS::TripleO::Services::CephExternal

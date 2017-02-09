@@ -3,6 +3,7 @@ heat_template_version: 2015-04-30
 description: >
   Software Config to drive os-net-config to configure VLANs for the
   compute role.
+
 parameters:
   ControlPlaneIp:
     default: ''
@@ -32,6 +33,10 @@ parameters:
     default: ''
     description: IP address/subnet on the management network
     type: string
+  ExternalNetworkVlanID:
+    default: 10
+    description: Vlan ID for the internal_api network traffic.
+    type: number
   InternalApiNetworkVlanID:
     default: 20
     description: Vlan ID for the internal_api network traffic.
@@ -40,10 +45,6 @@ parameters:
     default: 30
     description: Vlan ID for the storage network traffic.
     type: number
-  StorageMgmtNetworkVlanID:
-    default: 40
-    description: Vlan ID for the storage mgmt network traffic.
-    type: number
   TenantNetworkVlanID:
     default: 50
     description: Vlan ID for the tenant network traffic.
@@ -51,6 +52,10 @@ parameters:
   ManagementNetworkVlanID:
     default: 60
     description: Vlan ID for the management network traffic.
+    type: number
+  StorageMgmtNetworkVlanID:
+    default: 70
+    description: Vlan ID for the storage management network traffic.
     type: number
   ControlPlaneSubnetCidr: # Override this via parameter_defaults
     default: '24'
@@ -83,13 +88,14 @@ resources:
       config:
         os_net_config:
           network_config:
-           -
+            -
               type: ovs_bridge
               name: br-storage 
               members:
                 -
                   type: interface
-                  name: p2p1
+                  name: em1
+                  primary: true
                 -
                   type: vlan
                   vlan_id: {get_param: StorageNetworkVlanID}
@@ -102,22 +108,23 @@ resources:
                   addresses:
                     -
                       ip_netmask: {get_param: StorageMgmtIpSubnet}
-           -
+            -
               type: ovs_bridge
               name: br-tenant 
               members:
                 -
                   type: interface
                   name: p2p1
+                  primary: true
                 -
                   type: vlan
                   vlan_id: {get_param: TenantNetworkVlanID}
                   addresses:
                     -
                       ip_netmask: {get_param: TenantIpSubnet}
-           -
+            -
               type: ovs_bridge
-              name: br-ex 
+              name: {get_input: bridge_name}
               use_dhcp: false
               dns_servers: {get_param: DnsServers}
               addresses:
@@ -137,15 +144,28 @@ resources:
               members:
                 -
                   type: interface
-                  name: em2
+                  name: em2 
                   primary: true
-           -
+                -
+                  type: vlan
+                  vlan_id: {get_param: ExternalNetworkVlanID}
+                  addresses:
+                    -
+                      ip_netmask: {get_param: ExternalIpSubnet}
+                  routes:
+                    -
+                      default: true
+                      next_hop: {get_param: ExternalInterfaceDefaultRoute}
+
+                
+            -
               type: interface
-              name: em4
+              name: p2p1
               use_dhcp: false
               addresses:
                 -
-                    ip_netmask: {get_param: InternalApiIpSubnet}
+                  ip_netmask: {get_param: InternalApiIpSubnet}
+          
 
 outputs:
   OS::stack_id:

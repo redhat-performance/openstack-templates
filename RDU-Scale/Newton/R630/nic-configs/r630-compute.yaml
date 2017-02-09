@@ -3,6 +3,7 @@ heat_template_version: 2015-04-30
 description: >
   Software Config to drive os-net-config to configure VLANs for the
   compute role.
+
 parameters:
   ControlPlaneIp:
     default: ''
@@ -79,35 +80,37 @@ resources:
       config:
         os_net_config:
           network_config:
-           -
+            -
               type: ovs_bridge
               name: br-storage 
               members:
                 -
                   type: interface
-                  name: p2p1
+                  name: em1
+                  primary: true
                 -
                   type: vlan
                   vlan_id: {get_param: StorageNetworkVlanID}
                   addresses:
                     -
                       ip_netmask: {get_param: StorageIpSubnet}
-           -
+            -
               type: ovs_bridge
               name: br-tenant 
               members:
                 -
                   type: interface
-                  name: p2p1 
+                  name: p2p1
+                  primary: true
                 -
                   type: vlan
                   vlan_id: {get_param: TenantNetworkVlanID}
                   addresses:
                     -
                       ip_netmask: {get_param: TenantIpSubnet}
-           -
+            -
               type: ovs_bridge
-              name: br-ex 
+              name: br-ex
               use_dhcp: false
               dns_servers: {get_param: DnsServers}
               addresses:
@@ -129,15 +132,15 @@ resources:
                   type: interface
                   name: em2 
                   primary: true
-           -
+                
+            -
               type: interface
               name: p2p1
               use_dhcp: false
               addresses:
                 -
                   ip_netmask: {get_param: InternalApiIpSubnet}
-
-
+          
 
 outputs:
   OS::stack_id:

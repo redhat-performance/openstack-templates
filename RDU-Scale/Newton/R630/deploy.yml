@@ -1,5 +1,0 @@
-parameter_defaults:
-  ControllerCount: 1
-  R630ComputeCount: 1
-
-  OvercloudR630ComputeFlavor: compute

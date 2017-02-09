@@ -1,17 +1,18 @@
 resource_registry:
-  OS::TripleO::AllNodes::SoftwareConfig: /usr/share/openstack-tripleo-heat-templates/puppet/all-nodes-config.yaml
-
   OS::TripleO::BlockStorage::Net::SoftwareConfig: /home/stack/templates/nic-configs/cinder-storage.yaml
-  OS::TripleO::Compute::Net::SoftwareConfig: /home/stack/templates/nic-configs/compute.yaml
+  #OS::TripleO::Compute::Net::SoftwareConfig: /home/stack/templates/nic-configs/r630-compute.yaml
   OS::TripleO::Controller::Net::SoftwareConfig: /home/stack/templates/nic-configs/r630-controller.yaml
   OS::TripleO::ObjectStorage::Net::SoftwareConfig: /home/stack/templates/nic-configs/swift-storage.yaml
   OS::TripleO::CephStorage::Net::SoftwareConfig: /home/stack/templates/nic-configs/ceph-storage.yaml
-
   OS::TripleO::R630Compute::Net::SoftwareConfig: /home/stack/templates/nic-configs/r630-compute.yaml
   OS::TripleO::R630Compute::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
   OS::TripleO::R630Compute::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/internal_api.yaml
   OS::TripleO::R630Compute::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage.yaml
+  OS::TripleO::R630Compute::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
   OS::TripleO::R630Compute::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
+  
+
+
 
 parameter_defaults:
   NeutronExternalNetworkBridge: "''"
@@ -35,7 +36,7 @@ parameter_defaults:
   # The IP address of the EC2 metadata server. Generally the IP of the Undercloud
   EC2MetadataIp: 192.0.2.1
   # Define the DNS servers (maximum 2) for the overcloud nodes
-  DnsServers: ["10.12.64.161"]
+  DnsServers: ["10.11.5.19"]
   InternalApiNetworkVlanID: 301
   StorageNetworkVlanID: 302
   StorageMgmtNetworkVlanID: 303
