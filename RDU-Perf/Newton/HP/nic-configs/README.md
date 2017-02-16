@@ -1,26 +1,24 @@
-# RDU-Scale nic-configs
-
-Given the Scale lab has multiple system types, each connected different (some the same). We need to have customized templates per-node to give us greater flexibility and interface utilization.
+# RDU-Perf HP nic-configs
 
 ## configs details
 
-### R930
-The R930s have 4 interfaces attached, our templates will deploy the following config:
+### HP
 
 #### Controller
 
 |   Bridge   |  Interface     |   Networks     |
 |------------|:--------------:|---------------:|
-| br-storage | em2            | StorageNetwork, StorageMgmtNetwork |
-| br-tenant  | p1p1           | TenantNetwork   |
-| br-ex      | em1            | ControlPlane    |
-|            | p1p2           | InternalAPISubnet |
+| br-vlan / bond1      | ens2f0         | InternalApiIpSubnet ,StorageNetwork, StorageMgmtNetwork |
+|            | ens2f1         | |
+|            | ens1           | TenantIPSubnet |
+| br-ex      | eno2           | ControlPlane |
 
 #### Compute
 
 |   Bridge   |  Interface     |   Networks     |
 |------------|:--------------:|---------------:|
-| br-storage | em2            | StorageNetwork |
-| br-tenant  | p1p1           | TenantNetwork  |
-| br-ex      | em1            | ControlPlane   |
-|            | p1p2           | InternalAPISubnet |
+| br-vlan / bond1      | ens2f0         | InternalApiIpSubnet ,StorageNetwork|
+|            | ens2f1         | |
+|            | ens1           | TenantIPSubnet |
+| br-ex      | eno2           | ControlPlane |
+
