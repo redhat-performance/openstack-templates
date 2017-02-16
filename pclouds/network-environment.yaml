@@ -1,0 +1,29 @@
+resource_registry:
+  #OS::TripleO::BlockStorage::Net::SoftwareConfig: /home/stack/nic-configs/cinder-storage.yaml
+  OS::TripleO::Compute::Net::SoftwareConfig: /home/stack/nic-configs/compute.yaml
+  OS::TripleO::Controller::Net::SoftwareConfig: /home/stack/nic-configs/controller.yaml
+  #OS::TripleO::ObjectStorage::Net::SoftwareConfig: /home/stack/nic-configs/swift-storage.yaml
+  #OS::TripleO::CephStorage::Net::SoftwareConfig: /home/stack/nic-configs/ceph-storage.yaml
+
+parameter_defaults:
+  # Customize the IP subnets to match the local environment
+  InternalApiNetCidr: 172.22.33.0/24
+  StorageNetCidr: 172.22.36.0/24
+  StorageMgmtNetCidr: 172.22.35.0/24
+#  BondInterfaceOvsOptions: "bond_mode=balance-tcp lacp=active other-config:lacp-fallback-ab=true other-config:lacp-time=fast"
+  TenantNetCidr: 172.16.3.0/24
+  ExternalNetCidr: 10.16.28.0/22 
+  InternalApiAllocationPools: [{'start': '172.22.33.10', 'end': '172.22.33.200'}]
+  StorageAllocationPools: [{'start': '172.22.36.10', 'end': '172.22.36.200'}]
+  StorageMgmtAllocationPools: [{'start': '172.22.35.10', 'end': '172.22.35.200'}]
+  TenantAllocationPools: [{'start': '172.16.3.10', 'end': '172.16.3.200'}]
+  ExternalAllocationPools: [{'start': '10.16.31.100', 'end': '10.16.31.110'}]
+  ExternalInterfaceDefaultRoute: 10.16.31.254
+  InternalApiNetworkVlanID: 233
+  StorageNetworkVlanID: 236
+  StorageMgmtNetworkVlanID: 235
+  TenantNetworkVlanID: 237
+  NeutronExternalNetworkBridge: "br-ex"
+  ControlPlaneSubnetCidr: "22"
+  ControlPlaneDefaultRoute: 192.0.2.1
+  EC2MetadataIp: 192.0.2.1
