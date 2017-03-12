@@ -130,12 +130,20 @@ resources:
                   name: em2 
                   primary: true
            -
-              type: interface
-              name: p1p2
+              type: ovs_bridge
+              name: br-api
               use_dhcp: false
-              addresses:
+              members:
                 -
-                  ip_netmask: {get_param: InternalApiIpSubnet}
+                  type: interface
+                  name: p1p2
+                -
+                  type: vlan
+                  vlan_id: {get_param: InternalApiNetworkVlanID}
+                  addresses:
+                    -
+                      ip_netmask: {get_param: InternalApiIpSubnet}
+
 
 
 
