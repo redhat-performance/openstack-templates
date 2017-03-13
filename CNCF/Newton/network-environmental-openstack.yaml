@@ -19,6 +19,35 @@ resource_registry:
   OS::TripleO::CNCFBaremetal::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
 
 parameter_defaults:
+
+  ExternalNetName: external2
+  InternalApiNetName: internal_api2
+  StorageMgmtNetName: storagemgt2
+  StorageNetName: storage2
+  TenantNetName: tenant2
+
+  ExternalSubnetName: external_subnet2
+  InternalSubnetName: internal_api_subnet2
+  StorageMgmtSubnetName: storagemgmt_subnet2
+  StorageSubnetName: storage_subnet2
+  TenantSubnetName: tenant_subnet2
+
+  InternalApiNetValueSpecs:
+      'provider:physical_network': 'internal_api2'
+      'provider:network_type': 'flat'
+  ExternalNetValueSpecs:
+      'provider:physical_network': 'external2'
+      'provider:network_type': 'flat'
+  StorageNetValueSpecs:
+      'provider:physical_network': 'storage2'
+      'provider:network_type': 'flat'
+  StorageMgmtNetValueSpecs:
+      'provider:physical_network': 'storagemgt2'
+      'provider:network_type': 'flat'
+  TenantNetValueSpecs:
+      'provider:physical_network': 'tenant2'
+      'provider:network_type': 'flat'
+
   NeutronDhcpAgentsPerNetwork: 2
   InternalApiNetCidr: 172.16.0.0/16
   TenantNetCidr: 172.17.0.0/16
@@ -32,7 +61,7 @@ parameter_defaults:
   StorageAllocationPools: [{'start': '172.18.0.10', 'end': '172.18.5.200'}]
   StorageMgmtAllocationPools: [{'start': '172.19.0.10', 'end': '172.19.5.200'}]
   ManagementAllocationPools: [{'start': '172.20.0.10', 'end': '172.20.5.200'}]
-  ExternalAllocationPools: [{'start': '10.2.4.10', 'end': '10.2.5.55'}]
+  ExternalAllocationPools: [{'start': '10.2.4.109', 'end': '10.2.5.55'}]
   ExternalInterfaceDefaultRoute: 10.2.0.1
   ControlPlaneDefaultRoute: 192.0.2.1
   EC2MetadataIp: 192.0.2.1

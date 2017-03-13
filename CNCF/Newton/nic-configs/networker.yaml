@@ -143,20 +143,6 @@ resources:
                 -
                   type: vlan
                   device: bond0
-                  vlan_id: {get_param: StorageNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: StorageIpSubnet}
-                -
-                  type: vlan
-                  device: bond0
-                  vlan_id: {get_param: StorageMgmtNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: StorageMgmtIpSubnet}
-                -
-                  type: vlan
-                  device: bond0
                   vlan_id: {get_param: TenantNetworkVlanID}
                   addresses:
                     -
