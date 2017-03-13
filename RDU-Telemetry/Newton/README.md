@@ -5,6 +5,9 @@
 * 59 x R630/R620 for Computes (Mixed nodes)
 * 12 x 730xd for CephStorage (16 OSDs ea. Journal on NVMe)
 
+## Network Diagram
+![Network Diagram](network-diagram.png)
+
 ## Scheduler-hints / Pinning nodes
 
 I used scheduler-hints to ensure a deterministic node placement in this deployment.  You must tag each ironic node as such (Use your own ironic uuids):
