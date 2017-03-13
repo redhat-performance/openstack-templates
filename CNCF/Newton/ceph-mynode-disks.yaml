@@ -1,0 +1,24 @@
+# to get the node UUID of the node missing a disk, 
+# see Giulio Fidente's article
+# http://giuliofidente.com/2016/08/ceph-tripleo-and-the-newton-release.html#Customize-the-disks-map-for-a-specific-node
+# /dev/sdc is the system disk for all nodes, do not use it
+
+resource_registry:
+  OS::TripleO::CephStorageExtraConfigPre: /usr/share/openstack-tripleo-heat-templates/puppet/extraconfig/pre_deploy/per_node.yaml 
+
+parameter_defaults:
+  NodeDataLookup: >
+   {"7a7dc471-eb2f-4442-af25-dd76f3a8767a":
+     {"ceph::profile::params::osds":
+       {"/dev/sdb": {"journal": "/dev/sda"},
+       {"/dev/sdd": {"journal": "/dev/sda"},
+       {"/dev/sde": {"journal": "/dev/sda"},
+       {"/dev/sdf": {"journal": "/dev/sda"},
+       {"/dev/sdg": {"journal": "/dev/sda"},
+       {"/dev/sdh": {"journal": "/dev/sda"},
+       {"/dev/sdi": {"journal": "/dev/sda"},
+       {"/dev/sdj": {"journal": "/dev/sda"},
+       {"/dev/sdk": {"journal": "/dev/sda"},
+       }
+     }
+   }

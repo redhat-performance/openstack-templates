@@ -125,24 +125,6 @@ resources:
                 -
                   type: vlan
                   device: bond0
-                  vlan_id: {get_param: ExternalNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: ExternalIpSubnet}
-                  routes:
-                    -
-                      default: true
-                      next_hop: {get_param: ExternalInterfaceDefaultRoute}
-                -
-                  type: vlan
-                  device: bond0
-                  vlan_id: {get_param: InternalApiNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: InternalApiIpSubnet}
-                -
-                  type: vlan
-                  device: bond0
                   vlan_id: {get_param: StorageNetworkVlanID}
                   addresses:
                     -
@@ -154,14 +136,7 @@ resources:
                   addresses:
                     -
                       ip_netmask: {get_param: StorageMgmtIpSubnet}
-                -
-                  type: vlan
-                  device: bond0
-                  vlan_id: {get_param: TenantNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: TenantIpSubnet}
-
+              
 outputs:
   OS::stack_id:
     description: The OsNetConfigImpl resource.
