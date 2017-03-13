@@ -1,8 +1,0 @@
-# this tuning supports large numbers of Nova guests that don't do much I/O
-# default pg_num is set to 256
-
-parameter_defaults:
-  CephPools:
-    vms:
-      pg_num: 3000
-      pgp_num: 3000
