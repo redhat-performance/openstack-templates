@@ -1,0 +1,7 @@
+parameter_defaults:
+  # From https://github.com/RHsyseng/hci/blob/master/scripts/nova_mem_cpu_calc.py
+  # ./nova_mem_cpu_calc.py 128 40 16 8 1.0
+  # number of guests allowed based on: vCPU 24 memory 9 (so we are memory bound)
+  ExtraConfig:
+    nova::compute::reserved_host_memory: 52500
+    nova::cpu_allocation_ratio: 0.6

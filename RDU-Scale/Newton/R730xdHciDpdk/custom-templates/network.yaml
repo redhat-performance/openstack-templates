@@ -1,0 +1,46 @@
+resource_registry:
+  # ports for custom role
+  OS::TripleO::OsdCompute::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
+  OS::TripleO::OsdCompute::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/internal_api.yaml
+  OS::TripleO::OsdCompute::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage.yaml
+  OS::TripleO::OsdCompute::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage_mgmt.yaml
+  OS::TripleO::OsdCompute::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
+  # nic configs
+  OS::TripleO::Controller::Net::SoftwareConfig: /home/stack/custom-templates/nic-configs/r730-controller.yaml
+  OS::TripleO::OsdCompute::Net::SoftwareConfig: /home/stack/custom-templates/nic-configs/r730-osd-compute.yaml
+
+parameter_defaults:
+  NeutronExternalNetworkBridge: "''"
+  InternalApiNetCidr: 172.16.0.0/24
+  TenantNetCidr: 172.17.0.0/24
+  StorageNetCidr: 172.18.0.0/24
+  StorageMgmtNetCidr: 172.19.0.0/24
+  ManagementNetCidr: 172.20.0.0/24
+  ExternalNetCidr: 172.21.0.0/24
+  InternalApiAllocationPools: [{'start': '172.16.0.10', 'end': '172.16.0.200'}]
+  TenantAllocationPools: [{'start': '172.17.0.10', 'end': '172.17.0.200'}]
+  StorageAllocationPools: [{'start': '172.18.0.10', 'end': '172.18.0.200'}]
+  StorageMgmtAllocationPools: [{'start': '172.19.0.10', 'end': '172.19.0.200'}]
+  ManagementAllocationPools: [{'start': '172.20.0.10', 'end': '172.20.0.200'}]
+  ExternalAllocationPools: [{'start': '172.21.0.10', 'end': '172.21.0.100'}]
+  # Set to the router gateway on the external network
+  ExternalInterfaceDefaultRoute: 172.21.0.1
+  PublicVirtualFixedIPs: [{'ip_address':'172.21.0.10'}]
+  # Gateway router for the provisioning network (or Undercloud IP)
+  ControlPlaneDefaultRoute: 192.0.2.1
+  # The IP address of the EC2 metadata server. Generally the IP of the Undercloud
+  EC2MetadataIp: 192.0.2.1
+  # Define the DNS servers (maximum 2) for the overcloud nodes
+  DnsServers: ["10.11.5.19"]
+  InternalApiNetworkVlanID: 301
+  StorageNetworkVlanID: 302
+  StorageMgmtNetworkVlanID: 303
+  TenantNetworkVlanID: 304
+  ManagementNetworkVlanID: 305
+  ExternalNetworkVlanID: 10
+
+  NeutronTunnelTypes: 'vxlan'
+  NeutronNetworkType: 'vxlan'
+  # The OVS logical->physical bridge mappings to use.
+  NeutronBridgeMappings: 'dpdk0:br-link0,dpdk1:br-link1'
+  NeutronNetworkVLANRanges: 'dpdk0:100:200,dpdk1:100:200'  
