@@ -20,7 +20,7 @@ in the undercloud.conf when deploying the undercloud.
 ## Hardware Details
 
 Each of the R730xd node contains 4 NICs that can be used for an Overcloud
-deployment: em1, em2, p6p1 and p6p2. All these NICs are 10G. We will make use of
+deployment: em1, em2, p4p1 and p4p2. All these NICs are 10G. We will make use of
 all the four NICs in our templates. Tenant, Internal API and Storage ( along
 with Storage Management in the case of controllers) are all each seperated out
 onto a different NIC. Note that we will still be using OVS brdiges in some cases

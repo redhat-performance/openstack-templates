@@ -100,7 +100,7 @@ resources:
               members:
                 -
                   type: interface
-                  name: p6p1
+                  name: p4p1
                   primary: true
                 -
                   type: vlan
@@ -135,7 +135,7 @@ resources:
                 
             -
               type: interface
-              name: p6p2
+              name: p4p2
               use_dhcp: false
               addresses:
                 -
