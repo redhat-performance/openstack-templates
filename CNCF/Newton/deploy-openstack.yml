@@ -1,0 +1,12 @@
+parameter_defaults:
+  ControllerCount: 3
+  ComputeCount: 2
+  CephStorageCount: 9
+  CNCFNetworkerCount: 2
+#  CNCFBaremetalCount: 0 
+  
+  OvercloudControlFlavor: control
+  OvercloudCNCFNetworkerFlavor: control 
+  OvercloudCNCFBaremetalFlavor: cncfbare 
+  OvercloudCephStorageFlavor: ceph-storage
+  OvercloudComputeFlavor: compute

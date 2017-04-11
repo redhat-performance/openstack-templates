@@ -148,6 +148,8 @@ resources:
                       - '/'
                       - - {get_param: ControlPlaneIp}
                         - {get_param: ControlPlaneSubnetCidr}
+                -
+                  ip_netmask: {get_param: ExternalIpSubnet}
               routes:
                 -
                   ip_netmask: 169.254.169.254/32
