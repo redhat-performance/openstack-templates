@@ -33,6 +33,10 @@ parameters:
     default: ''
     description: IP address/subnet on the management network
     type: string
+  ExternalNetworkVlanID:
+    default: 10
+    description: Vlan ID for the internal_api network traffic.
+    type: number
   InternalApiNetworkVlanID:
     default: 20
     description: Vlan ID for the internal_api network traffic.
@@ -48,6 +52,10 @@ parameters:
   ManagementNetworkVlanID:
     default: 60
     description: Vlan ID for the management network traffic.
+    type: number
+  StorageMgmtNetworkVlanID:
+    default: 70
+    description: Vlan ID for the storage management network traffic.
     type: number
   ControlPlaneSubnetCidr: # Override this via parameter_defaults
     default: '24'
@@ -81,36 +89,61 @@ resources:
         os_net_config:
           network_config:
             -
-              type: ovs_bridge
-              name: br-storage 
-              members:
-                -
-                  type: interface
-                  name: em1
-                  primary: true
-                -
-                  type: vlan
-                  vlan_id: {get_param: StorageNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: StorageIpSubnet}
+              type: interface
+              name: em1
+              use_dhcp: false
+              mtu: 9000
             -
-              type: ovs_bridge
-              name: br-tenant 
-              members:
+              type: vlan
+              device: em1
+              mtu: 9000
+              use_dhcp: false
+              vlan_id: {get_param: StorageMgmtNetworkVlanID}
+              addresses:
                 -
-                  type: interface
-                  name: p4p1
-                  primary: true
-                -
-                  type: vlan
-                  vlan_id: {get_param: TenantNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: TenantIpSubnet}
+                  ip_netmask: {get_param: StorageMgmtIpSubnet}
             -
-              type: ovs_bridge
-              name: br-ex
+              type: vlan
+              device: em1
+              mtu: 9000
+              use_dhcp: false
+              vlan_id: {get_param: StorageNetworkVlanID}
+              addresses:
+                -
+                  ip_netmask: {get_param: StorageIpSubnet}
+            -
+              type: vlan
+              device: em1
+              mtu: 9000
+              use_dhcp: false
+              vlan_id: {get_param: InternalApiNetworkVlanID}
+              addresses:
+                -
+                  ip_netmask: {get_param: InternalApiIpSubnet}
+            -
+              type: vlan
+              device: em1
+              mtu: 9000
+              use_dhcp: false
+              vlan_id: {get_param: TenantNetworkVlanID}
+              addresses:
+                -
+                  ip_netmask: {get_param: TenantIpSubnet}
+            -
+              type: vlan
+              device: em1
+              mtu: 9000              
+              vlan_id: {get_param: ExternalNetworkVlanID}
+              addresses:
+                -
+                  ip_netmask: {get_param: ExternalIpSubnet}
+              routes:
+                -
+                  default: true
+                  next_hop: {get_param: ExternalInterfaceDefaultRoute}
+            -
+              type: interface
+              name: em2
               use_dhcp: false
               dns_servers: {get_param: DnsServers}
               addresses:
@@ -127,20 +160,35 @@ resources:
                 -
                   default: true
                   next_hop: {get_param: ControlPlaneDefaultRoute}
+            -
+              # unused interface
+              type: interface
+              name: em4
+              use_dhcp: false
+              defroute: false
+            # The controller doesn't need ovs_user_bridge 
+            -
+              type: ovs_bridge
+              name: br-link0
+              use_dhcp: false
               members:
                 -
                   type: interface
-                  name: em2 
-                  primary: true
-                
+                  name: p4p1
+            # -
+            #   # The controller doesn't need to use this NIC or provide DPDK here
+            #   type: interface
+            #   name: p4p2
+            #   use_dhcp: false
+            #   defroute: false
             -
-              type: interface
-              name: p4p2
+              type: ovs_bridge
+              name: br-link1
               use_dhcp: false
-              addresses:
+              members:
                 -
-                  ip_netmask: {get_param: InternalApiIpSubnet}
-          
+                  type: interface
+                  name: p4p2
 
 outputs:
   OS::stack_id:

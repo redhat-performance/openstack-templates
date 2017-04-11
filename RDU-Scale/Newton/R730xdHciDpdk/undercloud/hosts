@@ -1,0 +1,5 @@
+[undercloud]
+c10-h01-r730xd.rdu.openstack.engineering.redhat.com
+
+[hardware_store]
+# put the hwstore's fqdn here

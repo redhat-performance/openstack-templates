@@ -1,0 +1,6 @@
+parameter_defaults:  
+  ControllerCount: 3
+  OsdComputeCount: 6
+  OvercloudControlFlavor: control
+  OvercloudOsdComputeFlavor: compute
+  NtpServer: clock.redhat.com

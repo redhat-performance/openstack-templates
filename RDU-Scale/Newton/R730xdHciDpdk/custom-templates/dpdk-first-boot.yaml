@@ -1,0 +1,173 @@
+heat_template_version: 2014-10-16
+
+description: >
+  This is an example showing how you can do firstboot configuration
+  of the nodes via cloud-init.  To enable this, replace the default
+  mapping of OS::TripleO::NodeUserData in ../overcloud_resource_registry*
+
+parameters:
+  ComputeKernelArgs:
+    description: >
+      Space seprated list of Kernel args to be update to grub.
+      The given args will be appended to existing args of GRUB_CMDLINE_LINUX in file /etc/default/grub
+      Example: "intel_iommu=on default_hugepagesz=1GB hugepagesz=1G hugepages=1"
+    type: string
+    default: ""
+  ComputeHostnameFormat:
+    type: string
+    default: ""
+  HostCpusList:
+    description: >
+      A list or range of physical CPU cores to be tuned.
+      The given args will be appended to the tuned cpu-partitioning profile.
+      Ex. HostCpusList: '4-12' will tune cores from 4-12
+    type: string
+    default: ""
+  NeutronDpdkCoreList:
+    description: >
+      List of logical cores for PMD threads. Its mandatory parameter.
+    type: string
+  NeutronDpdkSocketMemory:
+    description: Memory allocated for each socket
+    default: ""
+    type: string
+
+resources:
+  userdata:
+    type: OS::Heat::MultipartMime
+    properties:
+      parts:
+      - config: {get_resource: boot_config}
+      - config: {get_resource: compute_kernel_args}
+
+  boot_config:
+    type: OS::Heat::CloudConfig
+    properties:
+      cloud_config:
+        yum_repos:
+          # Overcloud images deployed without any repos.
+          # In order to install required tuned profile an activate it, we should create FDP repo.
+          rhelosp-rhel-7-fast-datapth:
+            name: Fast Datapath packages
+            baseurl: http://pulp.dist.prod.ext.phx2.redhat.com/content/dist/rhel/server/7/7Server/x86_64/fast-datapath/os/
+            enabled: true
+            gpgcheck: false
+          rhel-7-common:
+            name: RHEL 7 Common
+            baseurl: http://pulp.dist.prod.ext.phx2.redhat.com/content/dist/rhel/server/7/7Server/$basearch/rh-common/os/
+            enabled: 1
+            gpgcheck: 0
+          red-hat-enterprise-linux:
+            name: Red Hat Enterprise Linux $releasever - $basearch - Server
+            baseurl: http://pulp.dist.prod.ext.phx2.redhat.com/content/dist/rhel/server/7/7Server/x86_64/os/
+            enabled: 1
+            gpgcheck: 0
+
+  # Verify the logs on /var/log/cloud-init.log on the overcloud node
+  compute_kernel_args:
+    type: OS::Heat::SoftwareConfig
+    properties:
+      config:
+        str_replace:
+          template: |
+            #!/bin/bash
+            set -x
+            core_mask=''
+            get_core_mask()
+            {
+              list=$1
+              declare -a bm
+              bm=(0 0 0 0 0 0 0 0 0 0)
+              max_idx=0
+              for core in $(echo $list | sed 's/,/ /g')
+              do
+                  index=$(($core/32))
+                  temp=$((1<<$core))
+                  bm[$index]=$((${bm[$index]} | $temp))
+                  if [ $max_idx -lt $index ]; then
+                     max_idx=$index
+                  fi
+              done
+
+              printf -v core_mask "%x" "${bm[$max_idx]}"
+              for ((i=$max_idx-1;i>=0;i--));
+              do
+                  printf -v hex "%08x" "${bm[$i]}"
+                  core_mask+=$hex
+              done
+              return 0
+            }
+
+            FORMAT=$COMPUTE_HOSTNAME_FORMAT
+            if [[ -z $FORMAT ]] ; then
+              FORMAT="compute" ;
+            else
+              # Assumption: only %index% and %stackname% are the variables in Host name format
+              FORMAT=$(echo $FORMAT | sed  's/\%index\%//g' | sed 's/\%stackname\%//g') ;
+            fi
+            sed 's/SELINUX=enforcing/SELINUX=permissive/g' -i /etc/selinux/config
+            if [[ $(hostname) == *$FORMAT* ]] ; then
+              if [ -f /usr/lib/systemd/system/openvswitch-nonetwork.service ]; then
+                ovs_service_path="/usr/lib/systemd/system/openvswitch-nonetwork.service"
+              elif [ -f /usr/lib/systemd/system/ovs-vswitchd.service ]; then
+                ovs_service_path="/usr/lib/systemd/system/ovs-vswitchd.service"
+              fi
+              grep -q "RuntimeDirectoryMode=.*" $ovs_service_path
+              if [ "$?" -eq 0 ]; then
+                sed -i 's/RuntimeDirectoryMode=.*/RuntimeDirectoryMode=0775/' $ovs_service_path
+              else
+                echo "RuntimeDirectoryMode=0775" >> $ovs_service_path
+              fi
+                grep -Fxq "Group=qemu" $ovs_service_path
+              if [ ! "$?" -eq 0 ]; then
+                echo "Group=qemu" >> $ovs_service_path
+              fi
+              grep -Fxq "UMask=0002" $ovs_service_path
+              if [ ! "$?" -eq 0 ]; then
+                echo "UMask=0002" >> $ovs_service_path
+              fi
+              ovs_ctl_path='/usr/share/openvswitch/scripts/ovs-ctl'
+              grep -q "umask 0002 \&\& start_daemon \"\$OVS_VSWITCHD_PRIORITY\"" $ovs_ctl_path
+              if [ ! "$?" -eq 0 ]; then
+                sed -i 's/start_daemon \"\$OVS_VSWITCHD_PRIORITY.*/umask 0002 \&\& start_daemon \"$OVS_VSWITCHD_PRIORITY\" \"$OVS_VSWITCHD_WRAPPER\" \"$@\"/' $ovs_ctl_path
+              fi
+
+              # Install the tuned package
+              yum install -y tuned-profiles-cpu-partitioning
+
+              tuned_conf_path="/etc/tuned/cpu-partitioning-variables.conf"
+              if [ -n "$TUNED_CORES" ]; then
+                grep -q "^isolated_cores" $tuned_conf_path
+                if [ "$?" -eq 0 ]; then
+                  sed -i 's/^isolated_cores=.*/isolated_cores=$TUNED_CORES/' $tuned_conf_path
+                else
+                  echo "isolated_cores=$TUNED_CORES" >> $tuned_conf_path
+                fi
+                tuned-adm profile cpu-partitioning
+              fi
+
+              get_core_mask $PMD_CORES
+              ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-init=true
+              ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-socket-mem=$SOCKET_MEMORY
+              ovs-vsctl --no-wait set Open_vSwitch . other_config:pmd-cpu-mask=$core_mask
+              ovs-vsctl --no-wait set Open_vSwitch . other_config:dpdk-lcore-mask=0x1
+
+              sed 's/^\(GRUB_CMDLINE_LINUX=".*\)"/\1 $KERNEL_ARGS"/g' -i /etc/default/grub ;
+              grub2-mkconfig -o /etc/grub2.cfg
+
+            fi
+            reboot
+          params:
+            $KERNEL_ARGS: {get_param: ComputeKernelArgs}
+            $COMPUTE_HOSTNAME_FORMAT: {get_param: ComputeHostnameFormat}
+            $TUNED_CORES: {get_param: HostCpusList}
+            $PMD_CORES: {get_param: NeutronDpdkCoreList}
+            $SOCKET_MEMORY: {get_param: NeutronDpdkSocketMemory}
+
+outputs:
+  # This means get_resource from the parent template will get the userdata, see:
+  # http://docs.openstack.org/developer/heat/template_guide/composition.html#making-your-template-resource-more-transparent
+  # Note this is new-for-kilo, an alternative is returning a value then using
+  # get_attr in the parent template instead.
+  OS::stack_id:
+    value: {get_resource: userdata}

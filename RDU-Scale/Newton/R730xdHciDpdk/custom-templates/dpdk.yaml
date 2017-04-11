@@ -1,0 +1,36 @@
+resource_registry:
+  # service definition for the ovs dpdk agent role 
+  # see /usr/share/openstack-tripleo-heat-templates/environments/neutron-ovs-dpdk.yaml
+  OS::TripleO::Services::ComputeNeutronOvsDpdkAgent: /usr/share/openstack-tripleo-heat-templates/puppet/services/neutron-ovs-dpdk-agent.yaml
+
+ # Add the first-boot.yaml to set the kernel parameters
+  OS::TripleO::NodeUserData: dpdk-first-boot.yaml
+  # Add the post-install.yaml file to set the DPDK arguments
+  OS::TripleO::NodeExtraConfigPost: post-install.yaml
+
+parameter_defaults:
+  # Kernel arguments for Compute node
+  ComputeKernelArgs: "intel_iommu=on iommu=pt default_hugepagesz=1GB hugepagesz=1G hugepages=12 isolcpus=1,3,5,7,9,11,13,15,17,19"
+  # Provide a list of cores that can be used as DPDK PMDs in the format - [allowed_pattern: "'[0-9,-]+'"]:
+  NeutronDpdkCoreList: "'1,3,5,7,9,11'"
+  # Provide the number of memory channels in the format - [allowed_pattern: "[0-9]+"]: 
+  NeutronDpdkMemoryChannels: "4"
+  # Set the memory allocated for each socket: 
+  NeutronDpdkSocketMemory: "'1024,1024'"
+  # Set the DPDK driver type, the default value is vfio-pci module: 
+  NeutronDpdkDriverType: "vfio-pci"
+  # Datapath type for ovs bridges
+  # see /usr/share/openstack-tripleo-heat-templates/environments/neutron-ovs-dpdk.yaml
+  NeutronDatapathType: "netdev"
+  # The vhost-user socket directory for OVS
+  # see /usr/share/openstack-tripleo-heat-templates/environments/neutron-ovs-dpdk.yaml
+  NeutronVhostuserSocketDir: "/var/run/openvswitch"
+  # Reserve the RAM for the host processes:
+  NovaReservedHostMemory: "4096"
+  # Add a list or range of physical CPU cores to be reserved for virtual machine processes: 
+  NovaVcpuPinSet: ['13,15,17,19']
+  # List the most restrictive filters first to make the filtering process for the nodes more efficient
+  NovaSchedulerDefaultFilters: "RamFilter,ComputeFilter,AvailabilityZoneFilter,ComputeCapabilitiesFilter,ImagePropertiesFilter,PciPassthroughFilter,NUMATopologyFilter"
+  # Set a list or range of physical CPU cores to be tuned: 
+  HostCpusList: '1,3,5,7,9,11,13,15,17,19'
+  # Compute/DPDK should use NUMA node 1 as per `lstopo-no-graphics`

@@ -2,7 +2,7 @@ heat_template_version: 2015-04-30
 
 description: >
   Software Config to drive os-net-config to configure VLANs for the
-  compute role.
+  hyperconverged compute role (compute + osd). 
 
 parameters:
   ControlPlaneIp:
@@ -40,6 +40,10 @@ parameters:
   StorageNetworkVlanID:
     default: 30
     description: Vlan ID for the storage network traffic.
+    type: number
+  StorageMgmtNetworkVlanID:
+    default: 70
+    description: Vlan ID for the storage management network traffic.
     type: number
   TenantNetworkVlanID:
     default: 50
@@ -81,36 +85,50 @@ resources:
         os_net_config:
           network_config:
             -
-              type: ovs_bridge
-              name: br-storage 
-              members:
-                -
-                  type: interface
-                  name: em1
-                  primary: true
-                -
-                  type: vlan
-                  vlan_id: {get_param: StorageNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: StorageIpSubnet}
+              type: interface
+              name: em1
+              use_dhcp: false
+              mtu: 9000
             -
-              type: ovs_bridge
-              name: br-tenant 
-              members:
+              type: vlan
+              device: em1
+              mtu: 9000
+              use_dhcp: false
+              vlan_id: {get_param: StorageMgmtNetworkVlanID}
+              addresses:
                 -
-                  type: interface
-                  name: p4p1
-                  primary: true
-                -
-                  type: vlan
-                  vlan_id: {get_param: TenantNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: TenantIpSubnet}
+                  ip_netmask: {get_param: StorageMgmtIpSubnet}
             -
-              type: ovs_bridge
-              name: br-ex
+              type: vlan
+              device: em1
+              mtu: 9000
+              use_dhcp: false
+              vlan_id: {get_param: StorageNetworkVlanID}
+              addresses:
+                -
+                  ip_netmask: {get_param: StorageIpSubnet}
+            -
+              type: vlan
+              device: em1
+              mtu: 9000
+              use_dhcp: false
+              vlan_id: {get_param: InternalApiNetworkVlanID}
+              addresses:
+                -
+                  ip_netmask: {get_param: InternalApiIpSubnet}
+            -
+              type: vlan
+              device: em1
+              mtu: 9000
+              use_dhcp: false
+              vlan_id: {get_param: TenantNetworkVlanID}
+              addresses:
+                -
+                  ip_netmask: {get_param: TenantIpSubnet} 
+            # compute/osd nodes do not have ExternalNetwork
+            -
+              type: interface
+              name: em2
               use_dhcp: false
               dns_servers: {get_param: DnsServers}
               addresses:
@@ -127,20 +145,54 @@ resources:
                 -
                   default: true
                   next_hop: {get_param: ControlPlaneDefaultRoute}
+            -
+              # unused interface
+              type: interface
+              name: em4
+              use_dhcp: false
+              defroute: false
+            # -
+            #   # VLAN for VXLAN tenant networking
+            #   type: ovs_bridge
+            #   name: br-tenant
+            #   use_dhcp: false
+            #   members:
+            #     -
+            #       type: interface
+            #       name: p4p1
+            #       use_dhcp: false
+            #       # force the MAC address of the bridge to this interface
+            #       primary: true
+            #     -
+            #       type: vlan
+            #       vlan_id: {get_param: TenantNetworkVlanID}
+            #       addresses:
+            #       -
+            #         ip_netmask: {get_param: TenantIpSubnet}
+            -
+              type: ovs_user_bridge
+              name: br-link0
+              use_dhcp: false
               members:
                 -
-                  type: interface
-                  name: em2 
-                  primary: true
-                
+                  type: ovs_dpdk_port
+                  name: dpdk0
+                  members:
+                    -
+                      type: interface
+                      name: p4p1
             -
-              type: interface
-              name: p4p2
+              type: ovs_user_bridge
+              name: br-link1
               use_dhcp: false
-              addresses:
+              members:
                 -
-                  ip_netmask: {get_param: InternalApiIpSubnet}
-          
+                  type: ovs_dpdk_port
+                  name: dpdk1
+                  members:
+                    -
+                      type: interface
+                      name: p4p2
 
 outputs:
   OS::stack_id:

@@ -12,18 +12,18 @@ The R730xds have 4 interfaces attached, our templates will deploy the following 
 |   Bridge   |  Interface     |   Networks                         |
 |------------|:--------------:|-----------------------------------:|
 | br-storage | em1            | StorageNetwork, StorageMgmtNetwork |
-| br-tenant  | p6p1           | TenantNetwork                      |
+| br-tenant  | p4p1           | TenantNetwork                      |
 | br-ex      | em2            | ControlPlane, ExternalNetwork      |                       
-|            | p6p2           | InternalAPISubnet                  |
+|            | p4p2           | InternalAPISubnet                  |
 
 #### Compute
 
 |   Bridge   |  Interface     |   Networks        |
 |------------|:--------------:|------------------:|
 | br-storage | em1            | StorageNetwork    |
-| br-tenant  | p6p1           | TenantNetwork     |
+| br-tenant  | p4p1           | TenantNetwork     |
 | br-ex      | em2            | ControlPlane      |
-|            | p6p2           | InternalAPISubnet |
+|            | p4p2           | InternalAPISubnet |
 
 #### Ceph
 
