@@ -1,8 +1,8 @@
 resource_registry:
   OS::TripleO::AllNodes::SoftwareConfig: /usr/share/openstack-tripleo-heat-templates/puppet/all-nodes-config.yaml
 
-  OS::TripleO::Compute::SoftwareConfig: /home/stack/openstack-templates/RDU-Perf/Ocata/SuperMicro/nic-configs/compute.yml
-  OS::TripleO::Controller::SoftwareConfig: /home/stack/openstack-templates/RDU-Perf/Ocata/SuperMicro/nic-configs/controller.yml
+  OS::TripleO::Compute::SoftwareConfig: /home/stack/openstack-templates/RDU-Perf/Ocata/SuperMicroBlades/nic-configs/compute.yml
+  OS::TripleO::Controller::SoftwareConfig: /home/stack/openstack-templates/RDU-Perf/Ocata/SuperMicroBlades/nic-configs/controller.yml
 
 parameter_defaults:
   NeutronExternalNetworkBridge: "''"
