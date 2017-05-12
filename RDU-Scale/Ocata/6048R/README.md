@@ -93,11 +93,6 @@ compute nodes and re-ran the same [deploy.sh](deploy.sh) to scale
 to a [52 node overcloud](52nodes.txt) with mixed HCI and non-HCI
 computes. 
 
-## Heat Templates
-
-See [custom-templates](custom-templates) to see the TripleO Heat
-Templates that were used to do the deployment. 
-
 ## Ironic Profiles
 
 I modified the instackenv.json I was issued with the servers in order
