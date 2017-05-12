@@ -1,0 +1,60 @@
+[stack@b10-h25-r620 ~]$ nova list
+/usr/lib/python2.7/site-packages/novaclient/client.py:278: UserWarning: The 'tenant_id' argument is deprecated in Ocata and its use may result in errors in future releases. As 'project_id' is provided, the 'tenant_id' argument will be ignored.
+  warnings.warn(msg)
++--------------------------------------+--------------------------+--------+------------+-------------+-------------------------+
+| ID                                   | Name                     | Status | Task State | Power State | Networks                |
++--------------------------------------+--------------------------+--------+------------+-------------+-------------------------+
+| b6ebdfa4-6930-40d4-b495-637ed5134afc | overcloud-compute-0      | ACTIVE | -          | Running     | ctlplane=192.168.24.112 |
+| cbae0324-8afb-413f-9e64-599a542a0295 | overcloud-compute-1      | ACTIVE | -          | Running     | ctlplane=192.168.24.69  |
+| 12ac6bb1-94af-4f11-bf2e-e14e6b1a7017 | overcloud-compute-10     | ACTIVE | -          | Running     | ctlplane=192.168.24.94  |
+| da1d7fd9-020f-485f-a490-929270c7b569 | overcloud-compute-11     | ACTIVE | -          | Running     | ctlplane=192.168.24.99  |
+| a4f07967-c0c3-4432-abcc-f17469298791 | overcloud-compute-12     | ACTIVE | -          | Running     | ctlplane=192.168.24.96  |
+| 3d7ec287-772f-4150-9476-c2ff8e2bea47 | overcloud-compute-13     | ACTIVE | -          | Running     | ctlplane=192.168.24.81  |
+| 0c4c726c-2928-4ca7-84a2-0371b57a47a9 | overcloud-compute-14     | ACTIVE | -          | Running     | ctlplane=192.168.24.97  |
+| 2334de88-2655-49d3-aab3-28e713d33028 | overcloud-compute-15     | ACTIVE | -          | Running     | ctlplane=192.168.24.90  |
+| 60d2fba0-39b4-41e6-9727-d700b2c8181e | overcloud-compute-16     | ACTIVE | -          | Running     | ctlplane=192.168.24.95  |
+| 66c455df-6cf1-459f-9767-9825f1cc9ede | overcloud-compute-17     | ACTIVE | -          | Running     | ctlplane=192.168.24.106 |
+| df6bbf8e-8d7a-45f7-ab36-e4da2238b4b6 | overcloud-compute-18     | ACTIVE | -          | Running     | ctlplane=192.168.24.108 |
+| b4b4f836-623b-45de-b215-d4325638ff2e | overcloud-compute-2      | ACTIVE | -          | Running     | ctlplane=192.168.24.93  |
+| cc7ef289-5218-4e4c-9f15-7335021f9359 | overcloud-compute-3      | ACTIVE | -          | Running     | ctlplane=192.168.24.89  |
+| 11b2f66b-a4ae-400a-a8a5-06960581a672 | overcloud-compute-4      | ACTIVE | -          | Running     | ctlplane=192.168.24.98  |
+| ab3bcfb9-bd7f-418a-a497-1678fc64d8e4 | overcloud-compute-5      | ACTIVE | -          | Running     | ctlplane=192.168.24.105 |
+| 82adf503-391c-4343-a97e-22c4fd3ff554 | overcloud-compute-6      | ACTIVE | -          | Running     | ctlplane=192.168.24.104 |
+| 9cd7fbef-9e66-482d-adc2-9208f8b643e7 | overcloud-compute-7      | ACTIVE | -          | Running     | ctlplane=192.168.24.53  |
+| b5e63e3d-7877-42ac-9e61-9c6c2239ed93 | overcloud-compute-8      | ACTIVE | -          | Running     | ctlplane=192.168.24.92  |
+| 4152d75a-e4a3-4d11-abb0-4929325149a6 | overcloud-compute-9      | ACTIVE | -          | Running     | ctlplane=192.168.24.100 |
+| 6b7d689c-e52c-4657-82e2-1229a4fe5cc6 | overcloud-controller-0   | ACTIVE | -          | Running     | ctlplane=192.168.24.70  |
+| c0639202-ed12-4368-ba7c-17be28c7a1ff | overcloud-controller-1   | ACTIVE | -          | Running     | ctlplane=192.168.24.54  |
+| 0f824cf4-c697-4f97-ae27-21df3b406778 | overcloud-controller-2   | ACTIVE | -          | Running     | ctlplane=192.168.24.59  |
+| 235b00b1-1ef4-4760-9258-243f5428841a | overcloud-osd-compute-0  | ACTIVE | -          | Running     | ctlplane=192.168.24.68  |
+| 25493264-1393-4be6-92f8-fb2f1e9b1a96 | overcloud-osd-compute-1  | ACTIVE | -          | Running     | ctlplane=192.168.24.57  |
+| ea465fe7-aac2-4885-ae44-20b0ed558e10 | overcloud-osd-compute-10 | ACTIVE | -          | Running     | ctlplane=192.168.24.79  |
+| ee60ea1e-32a7-424d-bd73-a2bdf49f8d70 | overcloud-osd-compute-11 | ACTIVE | -          | Running     | ctlplane=192.168.24.88  |
+| b4687139-7b13-4795-ba19-3cb1d3cddcb0 | overcloud-osd-compute-12 | ACTIVE | -          | Running     | ctlplane=192.168.24.86  |
+| c0f48c62-4af9-43db-a244-b5a2d6885c0d | overcloud-osd-compute-13 | ACTIVE | -          | Running     | ctlplane=192.168.24.85  |
+| 9ebaa360-80c6-4a5f-8fe3-3598f0a27282 | overcloud-osd-compute-14 | ACTIVE | -          | Running     | ctlplane=192.168.24.78  |
+| e1a28db3-efb0-4f3a-88c9-0bf3ed1bf211 | overcloud-osd-compute-15 | ACTIVE | -          | Running     | ctlplane=192.168.24.67  |
+| 5dbe2ba6-d392-4802-aeb1-0689415891d1 | overcloud-osd-compute-16 | ACTIVE | -          | Running     | ctlplane=192.168.24.77  |
+| d3575197-cd30-4e65-a153-dc23236a3a21 | overcloud-osd-compute-17 | ACTIVE | -          | Running     | ctlplane=192.168.24.82  |
+| ed90e627-a7e0-4245-bb0f-4d0793a30513 | overcloud-osd-compute-18 | ACTIVE | -          | Running     | ctlplane=192.168.24.84  |
+| cc839f77-13c9-4268-8143-965d33609163 | overcloud-osd-compute-19 | ACTIVE | -          | Running     | ctlplane=192.168.24.56  |
+| bb59b5b6-1f62-4aca-ac34-346a2da24a12 | overcloud-osd-compute-2  | ACTIVE | -          | Running     | ctlplane=192.168.24.74  |
+| f2507f28-f838-4f44-87c7-047b25b10ee5 | overcloud-osd-compute-20 | ACTIVE | -          | Running     | ctlplane=192.168.24.62  |
+| 58780950-69d6-4caa-b72e-615a27467e88 | overcloud-osd-compute-21 | ACTIVE | -          | Running     | ctlplane=192.168.24.71  |
+| 037d34dd-52a9-4c0d-b9f0-6699fb3018f4 | overcloud-osd-compute-22 | ACTIVE | -          | Running     | ctlplane=192.168.24.83  |
+| e600e4bf-1523-42d4-95d0-c0c3baef4ec1 | overcloud-osd-compute-23 | ACTIVE | -          | Running     | ctlplane=192.168.24.76  |
+| ddbac196-4ecf-4eb4-b8bc-ebc571d9e4a3 | overcloud-osd-compute-24 | ACTIVE | -          | Running     | ctlplane=192.168.24.66  |
+| 31e821be-e50d-496b-ab33-7ffb2d2cac45 | overcloud-osd-compute-25 | ACTIVE | -          | Running     | ctlplane=192.168.24.73  |
+| 1bde7323-9229-4d3e-8f6f-78a0a0c089d4 | overcloud-osd-compute-26 | ACTIVE | -          | Running     | ctlplane=192.168.24.80  |
+| f9b358a5-2667-4b08-a14e-e443c55fc058 | overcloud-osd-compute-27 | ACTIVE | -          | Running     | ctlplane=192.168.24.75  |
+| 766eb93a-7762-4402-a323-31548ddf88b2 | overcloud-osd-compute-28 | ACTIVE | -          | Running     | ctlplane=192.168.24.87  |
+| 4b4eeed4-9e9e-44b9-bde6-bd8649c5ed66 | overcloud-osd-compute-29 | ACTIVE | -          | Running     | ctlplane=192.168.24.65  |
+| 5aea7672-f6fb-46da-b114-12fa177150a4 | overcloud-osd-compute-3  | ACTIVE | -          | Running     | ctlplane=192.168.24.58  |
+| a3c7c9b2-c78e-4673-97f9-09fc62879bb0 | overcloud-osd-compute-4  | ACTIVE | -          | Running     | ctlplane=192.168.24.60  |
+| 9d245b9a-05df-4921-be9e-ec13d8750150 | overcloud-osd-compute-5  | ACTIVE | -          | Running     | ctlplane=192.168.24.64  |
+| 15156750-a2b4-45cd-970c-955a24fb99ba | overcloud-osd-compute-6  | ACTIVE | -          | Running     | ctlplane=192.168.24.63  |
+| a0d9d17d-4b95-49ff-b064-b6bd8d98f321 | overcloud-osd-compute-7  | ACTIVE | -          | Running     | ctlplane=192.168.24.72  |
+| f2d4bcd0-11f2-41d4-8705-2e816b3cdeb8 | overcloud-osd-compute-8  | ACTIVE | -          | Running     | ctlplane=192.168.24.52  |
+| 1dc17b86-3487-4d8f-b1be-ce504400e4cf | overcloud-osd-compute-9  | ACTIVE | -          | Running     | ctlplane=192.168.24.91  |
++--------------------------------------+--------------------------+--------+------------+-------------+-------------------------+
+[stack@b10-h25-r620 ~]$

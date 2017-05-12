@@ -1,0 +1,85 @@
+resource_registry:
+  OS::TripleO::NodeUserData: /home/stack/custom-templates/first-boot-template.yaml
+  #OS::TripleO::NodeExtraConfigPost: /home/stack/custom-templates/post-deploy-template.yaml
+
+parameter_defaults:
+  ExtraConfig:
+    ceph::profile::params::fsid: eb2bb192-b1c9-11e6-9205-525400330666    
+    ceph::profile::params::osd_pool_default_pg_num: 4096
+    ceph::profile::params::osd_pool_default_pgp_num: 4096
+    ceph::profile::params::osd_pool_default_size: 3
+    ceph::profile::params::osd_pool_default_min_size: 2
+    ceph::profile::params::osd_recovery_max_active: 1
+    ceph::profile::params::osd_max_backfills: 1
+    ceph::profile::params::osd_recovery_op_priority: 1
+  OsdComputeExtraConfig:
+    ceph::profile::params::osd_journal_size: 5120
+    ceph::profile::params::osds:
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:0:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:1:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:2:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:3:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:4:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:5:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:6:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:7:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:8:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:9:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:10:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:11:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:12:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:13:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:14:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:15:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:16:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:17:0':
+        journal: '/dev/nvme0n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:18:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:19:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:20:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:21:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:22:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:23:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:24:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:25:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:26:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:27:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:28:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:29:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:30:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:31:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:32:0':
+        journal: '/dev/nvme1n1'
+      '/dev/disk/by-path/pci-0000:03:00.0-scsi-0:2:33:0':
+        journal: '/dev/nvme1n1'

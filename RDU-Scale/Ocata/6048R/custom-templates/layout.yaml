@@ -1,0 +1,18 @@
+resource_registry:
+  OS::TripleO::OsdCompute::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/internal_api.yaml
+  OS::TripleO::OsdCompute::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
+  OS::TripleO::OsdCompute::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage.yaml
+  OS::TripleO::OsdCompute::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage_mgmt.yaml
+  OS::TripleO::OsdCompute::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml               
+
+parameter_defaults:
+  NtpServer: 10.5.26.10
+  
+  ControllerCount: 3
+  ComputeCount: 0
+  CephStorageCount: 0
+  OsdComputeCount: 30
+
+  OvercloudControlFlavor: control
+  OvercloudComputeFlavor: compute
+  OvercloudOsdComputeFlavor: ceph-storage
