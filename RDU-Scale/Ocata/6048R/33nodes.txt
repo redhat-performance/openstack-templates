@@ -1,0 +1,151 @@
+[stack@b10-h25-r620 ~]$ openstack server list
++--------------------------------------+--------------------------+--------+------------------------+----------------+
+| ID                                   | Name                     | Status | Networks               | Image Name     |
++--------------------------------------+--------------------------+--------+------------------------+----------------+
+| ac03d2e2-224e-404c-870d-b4bd662d5fbf | overcloud-osd-compute-24 | ACTIVE | ctlplane=192.168.24.62 | overcloud-full |
+| c7179f8f-539a-47bc-9126-64c0e8c92e01 | overcloud-osd-compute-14 | ACTIVE | ctlplane=192.168.24.81 | overcloud-full |
+| 42b71bd4-10f8-4e8a-a180-037a91a642b0 | overcloud-osd-compute-26 | ACTIVE | ctlplane=192.168.24.70 | overcloud-full |
+| d0a81541-ea0d-4ce7-a18d-c373bd3f31f0 | overcloud-osd-compute-6  | ACTIVE | ctlplane=192.168.24.72 | overcloud-full |
+| aa683c71-5a91-494b-86b8-75343b24d402 | overcloud-osd-compute-15 | ACTIVE | ctlplane=192.168.24.82 | overcloud-full |
+| 74a5138c-7e8a-46e6-a08d-917e3e9e0a45 | overcloud-osd-compute-29 | ACTIVE | ctlplane=192.168.24.77 | overcloud-full |
+| f361584d-1db5-4ab6-be01-96bc13628f02 | overcloud-osd-compute-8  | ACTIVE | ctlplane=192.168.24.64 | overcloud-full |
+| d31a2bf0-7423-41b7-9d15-2f365c891dd6 | overcloud-osd-compute-16 | ACTIVE | ctlplane=192.168.24.76 | overcloud-full |
+| 3709c59c-6b2c-47e5-922c-8f04ead8ba62 | overcloud-osd-compute-22 | ACTIVE | ctlplane=192.168.24.67 | overcloud-full |
+| 52dd9d89-2ee1-4e63-9c1e-5a409b1f8374 | overcloud-osd-compute-18 | ACTIVE | ctlplane=192.168.24.75 | overcloud-full |
+| a2b78601-d1db-408c-b204-89e1e0d06e5e | overcloud-osd-compute-11 | ACTIVE | ctlplane=192.168.24.85 | overcloud-full |
+| 7b9a9158-6db7-407a-a104-b337c825cc91 | overcloud-osd-compute-5  | ACTIVE | ctlplane=192.168.24.88 | overcloud-full |
+| 50cd53c8-41c3-4e3c-bf5a-dfa3aff1795d | overcloud-osd-compute-25 | ACTIVE | ctlplane=192.168.24.65 | overcloud-full |
+| eb1e26fa-4a2b-4341-932a-498ebcfeff34 | overcloud-osd-compute-19 | ACTIVE | ctlplane=192.168.24.69 | overcloud-full |
+| f2ab18c5-ad2d-42db-9677-51d7f2348200 | overcloud-osd-compute-17 | ACTIVE | ctlplane=192.168.24.68 | overcloud-full |
+| 01a1be9f-91ed-4283-820a-13064e0d9048 | overcloud-osd-compute-0  | ACTIVE | ctlplane=192.168.24.56 | overcloud-full |
+| 0f97252d-a364-4ef5-b9c7-f1851d22c377 | overcloud-osd-compute-9  | ACTIVE | ctlplane=192.168.24.80 | overcloud-full |
+| ccf3a6be-c272-40f9-ac39-8d5ffb290f08 | overcloud-osd-compute-4  | ACTIVE | ctlplane=192.168.24.71 | overcloud-full |
+| e83423a1-7442-4105-857b-d3ce4f5ba223 | overcloud-osd-compute-23 | ACTIVE | ctlplane=192.168.24.73 | overcloud-full |
+| 2806daac-e43b-4440-8f75-4496c973ea2d | overcloud-osd-compute-28 | ACTIVE | ctlplane=192.168.24.79 | overcloud-full |
+| e7345cd3-759e-4b78-97b5-1fcbdb45baca | overcloud-osd-compute-13 | ACTIVE | ctlplane=192.168.24.90 | overcloud-full |
+| fe2f8c65-2e4e-41b8-8b9a-bd9ca6d22069 | overcloud-osd-compute-12 | ACTIVE | ctlplane=192.168.24.87 | overcloud-full |
+| 7686d8ea-8d79-4f3b-952f-89d210ad28ad | overcloud-osd-compute-7  | ACTIVE | ctlplane=192.168.24.54 | overcloud-full |
+| e5d797a8-5f24-476e-a194-43a0a33eb82e | overcloud-osd-compute-2  | ACTIVE | ctlplane=192.168.24.61 | overcloud-full |
+| 3a9bb658-f9c7-4ac5-a15d-95febf7eaf9f | overcloud-controller-2   | ACTIVE | ctlplane=192.168.24.53 | overcloud-full |
+| b88509a4-1d1a-4edb-a802-5042a916ee5b | overcloud-osd-compute-10 | ACTIVE | ctlplane=192.168.24.78 | overcloud-full |
+| 07a36656-bcab-44c6-98b5-4f9bf814b283 | overcloud-osd-compute-3  | ACTIVE | ctlplane=192.168.24.74 | overcloud-full |
+| 92672849-f1ef-4d69-ac30-839ceda4a6c2 | overcloud-osd-compute-21 | ACTIVE | ctlplane=192.168.24.60 | overcloud-full |
+| 5b6fbf86-880b-4c5b-8dbc-689b4760bf20 | overcloud-osd-compute-27 | ACTIVE | ctlplane=192.168.24.55 | overcloud-full |
+| a8bbbfd6-443f-4176-8140-e85d9182812e | overcloud-osd-compute-1  | ACTIVE | ctlplane=192.168.24.59 | overcloud-full |
+| 4470f34d-987c-4e47-81ff-08bf001de294 | overcloud-osd-compute-20 | ACTIVE | ctlplane=192.168.24.52 | overcloud-full |
+| a823e24f-27f4-4c4c-8980-a1aa0f2f4bf0 | overcloud-controller-1   | ACTIVE | ctlplane=192.168.24.57 | overcloud-full |
+| 077cfca2-9977-4169-92bf-354c81511764 | overcloud-controller-0   | ACTIVE | ctlplane=192.168.24.63 | overcloud-full |
++--------------------------------------+--------------------------+--------+------------------------+----------------+
+[stack@b10-h25-r620 ~]$
+
+[stack@b10-h25-r620 ~]$ openstack baremetal node list
++---------------------------------+---------------+---------------------------------+-------------+--------------------+-------------+
+| UUID                            | Name          | Instance UUID                   | Power State | Provisioning State | Maintenance |
++---------------------------------+---------------+---------------------------------+-------------+--------------------+-------------+
+| 0c94d63e-                       | b10-h26-r620  | 077cfca2-9977-4169-92bf-        | power on    | active             | False       |
+| 23c7-4067-a2d4-0c61b1f17491     |               | 354c81511764                    |             |                    |             |
+| 5f6a22c7-f74c-4270-9c0f-        | b10-h27-r620  | a823e24f-                       | power on    | active             | False       |
+| f946b600b642                    |               | 27f4-4c4c-8980-a1aa0f2f4bf0     |             |                    |             |
+| 24d41cdd-6f31-4243-9e5a-        | c01-h01-r620  | 3a9bb658-f9c7-4ac5-a15d-        | power on    | active             | False       |
+| 860915e4f721                    |               | 95febf7eaf9f                    |             |                    |             |
+| 016b5095-ab7a-                  | c01-h02-r620  | None                            | power off   | available          | False       |
+| 4e53-af76-e73e85e49fc8          |               |                                 |             |                    |             |
+| 85265b1a-5e5f-                  | c01-h05-r620  | None                            | power off   | available          | False       |
+| 4a51-8a16-08f35b21d020          |               |                                 |             |                    |             |
+| a75546be-                       | c01-h06-r620  | None                            | power off   | available          | False       |
+| 3f47-497a-8246-fff8bc137374     |               |                                 |             |                    |             |
+| 3029ed5a-b14b-4c2b-b75d-        | c01-h07-r620  | None                            | power off   | available          | False       |
+| c53b4f164cdc                    |               |                                 |             |                    |             |
+| 18afa2f0-6255-4da7-9920-0209ffc | c01-h19-r620  | None                            | power off   | available          | False       |
+| 7078d                           |               |                                 |             |                    |             |
+| a698b384-c18c-414d-be6e-        | c01-h21-r620  | None                            | power off   | available          | False       |
+| 0d9d8e434490                    |               |                                 |             |                    |             |
+| 5c306204-90b9-4857-9644-0895e3c | c01-h22-r620  | None                            | power off   | available          | False       |
+| 12e7c                           |               |                                 |             |                    |             |
+| f9d1d69e-                       | c01-h23-r620  | None                            | power off   | available          | False       |
+| 9de0-47c4-a8f0-404434ac92a4     |               |                                 |             |                    |             |
+| 74b78190-51f5-46c5-a054-79656ac | c02-h01-r620  | None                            | power off   | available          | False       |
+| a3f7b                           |               |                                 |             |                    |             |
+| 26b9a926-7172-47e6-be07-326fb1e | c04-h01-6048r | a2b78601-d1db-                  | power on    | active             | False       |
+| 8e194                           |               | 408c-b204-89e1e0d06e5e          |             |                    |             |
+| 83dfc432-4a72-445e-80eb-        | c04-h05-6048r | e83423a1-7442-4105-857b-        | power on    | active             | False       |
+| 4b194121ecfa                    |               | d3ce4f5ba223                    |             |                    |             |
+| 5ac3a867-5924-4e6a-9481-03e7cd0 | c04-h09-6048r | 74a5138c-7e8a-46e6-a08d-        | power on    | active             | False       |
+| e75c5                           |               | 917e3e9e0a45                    |             |                    |             |
+| c0d66846-a210-4967-a602-ecd15ab | c04-h13-6048r | f361584d-                       | power on    | active             | False       |
+| eac14                           |               | 1db5-4ab6-be01-96bc13628f02     |             |                    |             |
+| 8af7814c-4972-46cd-863e-        | c04-h17-6048r | 5b6fbf86-880b-4c5b-8dbc-        | power on    | active             | False       |
+| ff5e6fc3830b                    |               | 689b4760bf20                    |             |                    |             |
+| 8ddf41d9-7a53-48c8-a0eb-        | c04-h21-6048r | 0f97252d-a364-4ef5-b9c7-f1851d2 | power on    | active             | False       |
+| 81f92b46ebc6                    |               | 2c377                           |             |                    |             |
+| 64f7e8bd-                       | c04-h25-6048r | 3709c59c-6b2c-47e5-922c-        | power on    | active             | False       |
+| a1e6-4155-857c-b22794396498     |               | 8f04ead8ba62                    |             |                    |             |
+| 972c3ee7-2209-46c3-9b2f-        | c04-h29-6048r | 92672849-f1ef-                  | power on    | active             | False       |
+| 3334954d324e                    |               | 4d69-ac30-839ceda4a6c2          |             |                    |             |
+| 950ee218-582e-                  | c05-h01-6048r | 01a1be9f-91ed-4283-820a-        | power on    | active             | False       |
+| 45c8-aa09-e534cd450a32          |               | 13064e0d9048                    |             |                    |             |
+| 2d240c8a-                       | c05-h05-6048r | 07a36656-bcab-                  | power on    | active             | False       |
+| 5e26-4832-8715-07460c810e34     |               | 44c6-98b5-4f9bf814b283          |             |                    |             |
+| 9a2dddcb-4a6e-498f-880f-        | c05-h09-6048r | 7686d8ea-8d79-4f3b-952f-        | power on    | active             | False       |
+| 7f068119d71f                    |               | 89d210ad28ad                    |             |                    |             |
+| abfecff1-9020-4cf7-9208-dcc443b | c05-h13-6048r | f2ab18c5-ad2d-                  | power on    | active             | False       |
+| 7ff8c                           |               | 42db-9677-51d7f2348200          |             |                    |             |
+| ccb16c9c-c26a-                  | c05-h17-6048r | 52dd9d89-2ee1-4e63-9c1e-        | power on    | active             | False       |
+| 4f70-97c4-ca9aaaeb26d6          |               | 5a409b1f8374                    |             |                    |             |
+| f08d08bf-e967-4575-96b6-4bb6eae | c05-h21-6048r | a8bbbfd6-443f-4176-8140-e85d918 | power on    | active             | False       |
+| c903d                           |               | 2812e                           |             |                    |             |
+| e03cc6ba-5441-405d-8142-60e3e9a | c05-h25-6048r | d0a81541-ea0d-4ce7-a18d-        | power on    | active             | False       |
+| 809fd                           |               | c373bd3f31f0                    |             |                    |             |
+| e8c01bc8-1a78-4e3a-923d-        | c05-h29-6048r | ac03d2e2-224e-404c-870d-        | power on    | active             | False       |
+| 38deba4a2429                    |               | b4bd662d5fbf                    |             |                    |             |
+| 5ce15dd4-9d03-4211-9ba4-7537b93 | c06-h01-6048r | b88509a4-1d1a-                  | power on    | active             | False       |
+| cfc95                           |               | 4edb-a802-5042a916ee5b          |             |                    |             |
+| c2bd2016-180c-4301-ada3-c71dc97 | c06-h05-6048r | eb1e26fa-4a2b-4341-932a-        | power on    | active             | False       |
+| 70123                           |               | 498ebcfeff34                    |             |                    |             |
+| 6b67be83-62a4-4854-8e40-45e250c | c06-h09-6048r | e5d797a8-5f24-476e-a194-43a0a33 | power on    | active             | False       |
+| d63a6                           |               | eb82e                           |             |                    |             |
+| dd9a28cb-e09f-49f5-a7ef-        | c06-h13-6048r | aa683c71-5a91-494b-             | power on    | active             | False       |
+| eaca1261c8ce                    |               | 86b8-75343b24d402               |             |                    |             |
+| a0badbcc-7b74-4023-82cc-        | c06-h17-6048r | 42b71bd4-10f8-4e8a-a180-037a91a | power on    | active             | False       |
+| 3345a3be4a55                    |               | 642b0                           |             |                    |             |
+| 4acb6ba1-c68c-4007-95be-        | c06-h21-6048r | 7b9a9158-6db7-407a-a104-b337c82 | power on    | active             | False       |
+| 2a2efe7b764d                    |               | 5cc91                           |             |                    |             |
+| 96b12967-05ef-4425-9ac6-cc5fccb | c06-h25-6048r | e7345cd3-759e-                  | power on    | active             | False       |
+| e550b                           |               | 4b78-97b5-1fcbdb45baca          |             |                    |             |
+| 645fd940-ae47-492a-a504-bebd224 | c07-h01-6048r | c7179f8f-539a-                  | power on    | active             | False       |
+| 974aa                           |               | 47bc-9126-64c0e8c92e01          |             |                    |             |
+| 104179f6-4054-42a6-9afc-        | c07-h05-6048r | 2806daac-                       | power on    | active             | False       |
+| 938ae93f2035                    |               | e43b-4440-8f75-4496c973ea2d     |             |                    |             |
+| 35f51b44-6f73-4199-b533-5b23fd0 | c07-h09-6048r | d31a2bf0-7423-41b7-9d15-2f365c8 | power on    | active             | False       |
+| 2bdec                           |               | 91dd6                           |             |                    |             |
+| d5ecd98f-55ec-48fd-917c-        | c07-h13-6048r | ccf3a6be-c272-40f9-ac39-8d5ffb2 | power on    | active             | False       |
+| c83bd3af30ef                    |               | 90f08                           |             |                    |             |
+| 7f2558c2-e105-4e25-8748-705ae34 | c07-h17-6048r | 4470f34d-987c-4e47-81ff-        | power on    | active             | False       |
+| d4ab3                           |               | 08bf001de294                    |             |                    |             |
+| 34763db6-f597-4b95-be4d-        | c07-h21-6048r | fe2f8c65-2e4e-41b8-8b9a-        | power on    | active             | False       |
+| e362700af4a7                    |               | bd9ca6d22069                    |             |                    |             |
+| 57ce091a-b818-449a-8702-9e62482 | c07-h25-6048r | 50cd53c8-41c3-4e3c-bf5a-        | power on    | active             | False       |
+| 73396                           |               | dfa3aff1795d                    |             |                    |             |
+| 73d24a22-4e79-43c8-9724-51a9c5a | c09-h27-r630  | None                            | power off   | available          | False       |
+| fed9a                           |               |                                 |             |                    |             |
+| f7995acc-                       | c10-h25-r630  | None                            | power off   | available          | False       |
+| 78f3-4a91-98e5-d8210bc6fdcb     |               |                                 |             |                    |             |
+| 91f38ffb-27bf-                  | c10-h26-r630  | None                            | power off   | available          | False       |
+| 40a9-8b87-d5c1f0505dd4          |               |                                 |             |                    |             |
+| fb390430-f5f2-48e3-90d4-80b72e6 | c10-h27-r630  | None                            | power off   | available          | False       |
+| 4075c                           |               |                                 |             |                    |             |
+| 89c7db40-aac8-4a36-bf22-478426b | c10-h28-r630  | None                            | power off   | available          | False       |
+| 5fad0                           |               |                                 |             |                    |             |
+| e1586400-cac5-4e70-abca-        | c10-h29-r630  | None                            | power off   | available          | False       |
+| d42a1460a858                    |               |                                 |             |                    |             |
+| a1dfd302-6acb-                  | c10-h30-r630  | None                            | power off   | available          | False       |
+| 4f62-ac06-1895d5c41090          |               |                                 |             |                    |             |
+| 91e59ee2-5f84-431c-             | c10-h31-r630  | None                            | power off   | available          | False       |
+| 8c18-f5a719fc1151               |               |                                 |             |                    |             |
+| 94a8fa20-a457-49d4-8fd6-119ded5 | c10-h32-r630  | None                            | power off   | available          | False       |
+| 0d2d7                           |               |                                 |             |                    |             |
+| ca35314f-8a5d-4821-8f3e-        | c10-h33-r630  | None                            | power off   | available          | False       |
+| f257c948dd51                    |               |                                 |             |                    |             |
++---------------------------------+---------------+---------------------------------+-------------+--------------------+-------------+
+[stack@b10-h25-r620 ~]$ 
+
