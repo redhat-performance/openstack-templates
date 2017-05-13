@@ -1,4 +1,4 @@
-parameter_defaults:  
+parameter_defaults:
   ControllerCount: 1
   ComputeCount: 0
   #R630ControllerCount: 3
@@ -10,3 +10,9 @@ parameter_defaults:
   OvercloudR630ComputeFlavor: compute
   OvercloudCephStorageFlavor: ceph-storage
   OvercloudSwiftStorageFlavor: swift-storage
+
+  Debug: true
+  LoggingServers:
+  - host: fluentd.perf.lab.eng.bos.redhat.com
+    port:  4000
+  LoggingUsesSSL: false

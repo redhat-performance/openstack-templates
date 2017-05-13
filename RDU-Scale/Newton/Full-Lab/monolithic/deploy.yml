@@ -4,3 +4,9 @@ parameter_defaults:
 
   OvercloudR930ControlFlavor: controller
   OvercloudR930ComputeFlavor: compute
+
+  Debug: true
+  LoggingServers:
+  - host: fluentd.perf.lab.eng.bos.redhat.com
+    port:  4000
+  LoggingUsesSSL: false
