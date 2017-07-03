@@ -1,0 +1,35 @@
+parameter_defaults:
+  ControllerCount: 3
+  #ComputeCount: 0
+  R630ComputeCount: 42
+  R730ComputeCount: 3
+  R620ComputeCount: 77
+  R930ComputeCount: 4
+  R730CephStorageCount: 8
+  R6048CephStorageCount: 0
+  ObjectStorageCount: 0
+
+  #OvercloudControlFlavor: control
+  #OvercloudR630ComputeFlavor: r630-compute
+  #OvercloudR630ComputeFlavor: r730-compute
+  #OvercloudR620ComputeFlavor: r620-compute
+  #OvercloudR730CephStorageFlavor: r730-ceph
+  #OvercloudR6048CephStorageFlavor: r6048-ceph
+  #OvercloudSwiftStorageFlavor: swift-storage
+  ControllerSchedulerHints:
+    'capabilities:node': 'controller-%index%'
+  R730ComputeSchedulerHints:
+    'capabilities:node': 'r730compute-%index%'
+  R630ComputeSchedulerHints:
+    'capabilities:node': 'r630compute-%index%'
+  R620ComputeSchedulerHints:
+    'capabilities:node': 'r620compute-%index%'
+  R930ComputeSchedulerHints:
+    'capabilities:node': 'r930compute-%index%'
+  R730CephStorageSchedulerHints:
+    'capabilities:node': 'r730ceph-%index%'
+
+
+
+  
+
