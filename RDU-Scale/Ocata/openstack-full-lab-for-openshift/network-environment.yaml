@@ -5,7 +5,7 @@ resource_registry:
   OS::TripleO::R730CephStorage::Net::SoftwareConfig: nic-configs/r730-ceph.yaml
   OS::TripleO::R630Compute::Net::SoftwareConfig: nic-configs/r630-compute.yaml
   OS::TripleO::R730Compute::Net::SoftwareConfig: nic-configs/r730-compute.yaml
-  OS::TripleO::R730Compute::Net::SoftwareConfig: nic-configs/r930-compute.yaml
+  OS::TripleO::R930Compute::Net::SoftwareConfig: nic-configs/r930-compute.yaml
   OS::TripleO::R620Compute::Net::SoftwareConfig: nic-configs/r620-compute.yaml
   OS::TripleO::R6048CephStorage::Net::SoftwareConfig: nic-configs/r730-ceph.yaml
   OS::TripleO::R630Compute::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
