@@ -1,0 +1,36 @@
+# This requires tuning for your specific environment
+parameter_defaults:
+  CephPools:
+    rbd:
+      size: 2
+      pg_num: 32
+      pgp_num: 32
+    vms:
+      size: 2
+      pg_num: 32
+      pgp_num: 32
+    volumes:
+      size: 2
+      pg_num: 32
+      pgp_num: 32
+    backups:
+      size: 2
+      pg_num: 32
+      pgp_num: 32
+    images:
+      size: 2
+      pg_num: 32
+      pgp_num: 32
+    metrics:
+      size: 2
+      pg_num: 32
+      pgp_num: 32
+
+#    manila_data:
+#      size: 2
+#      pg_num: 32
+#      pgp_num: 32
+#    manila_metadata:
+#      size: 2
+#      pg_num: 32
+#      pgp_num: 32
