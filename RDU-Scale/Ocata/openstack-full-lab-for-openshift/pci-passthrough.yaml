@@ -1,0 +1,9 @@
+parameter_defaults:
+  NovaSchedulerDefaultFilters: ['AvailabilityZoneFilter','RamFilter','ComputeFilter','ComputeCapabilitiesFilter','ImagePropertiesFilter','ServerGroupAntiAffinityFilter','ServerGroupAffinityFilter', 'PciPassthroughFilter']
+  NovaSchedulerAvailableFilters: ['nova.scheduler.filters.all_filters']
+  #ControllerExtraConfig:
+  #  nova::api::pci_alias: "[ {'vendor_id':'144d', 'product_id':'a820', 'name':'nvme', 'device_type':'type-PCI'} ]" 
+  #R730ComputeExtraConfig:
+  #  nova:compute:pci_passthrough_whitelist: "[ { 'address': '0000:06:00.0' } ]"
+
+
