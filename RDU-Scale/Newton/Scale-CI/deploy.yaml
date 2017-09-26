@@ -1,0 +1,18 @@
+parameter_defaults:
+  ControllerCount: 3
+  R620ComputeCount: 22
+  R630ComputeCount: 5
+  R720xdComputeCount: 2
+  P1029ComputeCount: 3
+  ObjectStorageCount: 0
+
+  ControllerSchedulerHints:
+    'capabilities:node': 'controller-%index%'
+  R720xdComputeSchedulerHints:
+    'capabilities:node': 'r720xdcompute-%index%'
+  R630ComputeSchedulerHints:
+    'capabilities:node': 'r630compute-%index%'
+  R620ComputeSchedulerHints:
+    'capabilities:node': 'r620compute-%index%'
+  P1029ComputeSchedulerHints:
+    'capabilities:node': '1029pcompute-%index%'
