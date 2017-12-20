@@ -82,6 +82,34 @@ resources:
           network_config:
             -
               type: ovs_bridge
+              name: br-storage
+              members:
+                -
+                  type: interface
+                  name: em2
+                  primary: true
+                -
+                  type: vlan
+                  vlan_id: {get_param: StorageNetworkVlanID}
+                  addresses:
+                    -
+                      ip_netmask: {get_param: StorageIpSubnet}
+            -
+              type: ovs_bridge
+              name: br-tenant
+              members:
+                -
+                  type: interface
+                  name: p2p3
+                  primary: true
+                -
+                  type: vlan
+                  vlan_id: {get_param: TenantNetworkVlanID}
+                  addresses:
+                    -
+                      ip_netmask: {get_param: TenantIpSubnet}
+            -
+              type: ovs_bridge
               name: br-ex
               use_dhcp: false
               dns_servers: {get_param: DnsServers}
@@ -102,35 +130,16 @@ resources:
               members:
                 -
                   type: interface
-                  name: em2
-                  # force the MAC address of the bridge to this interface
+                  name: p2p4
                   primary: true
-                -
-                  type: vlan
-                  vlan_id: {get_param: InternalApiNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: InternalApiIpSubnet}
-                -
-                  type: vlan
-                  vlan_id: {get_param: StorageNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: StorageIpSubnet}
+
             -
-              type: ovs_bridge
-              name: br-tenant
-              members:
+              type: interface
+              name: em1
+              use_dhcp: false
+              addresses:
                 -
-                  type: interface
-                  name: em1
-                  primary: true
-                -
-                  type: vlan
-                  vlan_id: {get_param: TenantNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: TenantIpSubnet}
+                  ip_netmask: {get_param: InternalApiIpSubnet}
 
 
 outputs:

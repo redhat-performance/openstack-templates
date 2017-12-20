@@ -102,7 +102,7 @@ resources:
               members:
                 -
                   type: interface
-                  name: em2
+                  name: p2p4
                   # force the MAC address of the bridge to this interface
                   primary: true
                 -
@@ -125,7 +125,7 @@ resources:
               members:
                 -
                   type: interface
-                  name: em1
+                  name: p2p3
                   primary: true
                 -
                   type: vlan

@@ -2,7 +2,8 @@ heat_template_version: 2015-04-30
 
 description: >
   Software Config to drive os-net-config to configure VLANs for the
-  ceph storage role.
+  ceph role.
+
 parameters:
   ControlPlaneIp:
     default: ''
@@ -32,17 +33,29 @@ parameters:
     default: ''
     description: IP address/subnet on the management network
     type: string
+  ExternalNetworkVlanID:
+    default: 10
+    description: Vlan ID for the external network traffic.
+    type: number
+  InternalApiNetworkVlanID:
+    default: 20
+    description: Vlan ID for the internal_api network traffic.
+    type: number
   StorageNetworkVlanID:
     default: 30
     description: Vlan ID for the storage network traffic.
     type: number
-  StorageMgmtNetworkVlanID:
-    default: 40
-    description: Vlan ID for the storage mgmt network traffic.
+  TenantNetworkVlanID:
+    default: 50
+    description: Vlan ID for the tenant network traffic.
     type: number
   ManagementNetworkVlanID:
     default: 60
     description: Vlan ID for the management network traffic.
+    type: number
+  StorageMgmtNetworkVlanID:
+    default: 40
+    description: Vlan ID for the storage management network traffic.
     type: number
   ControlPlaneSubnetCidr: # Override this via parameter_defaults
     default: '24'
@@ -78,11 +91,10 @@ resources:
             -
               type: ovs_bridge
               name: br-storage
-              use_dhcp: false
               members:
                 -
                   type: interface
-                  name: ens3f0
+                  name: enp131s0f0
                   primary: true
                 -
                   type: vlan
@@ -93,6 +105,21 @@ resources:
             -
               type: ovs_bridge
               name: br-storage-mgmt
+              members:
+                -
+                  type: interface
+                  name: enp131s0f1
+                  primary: true
+                -
+                  type: vlan
+                  vlan_id: {get_param: StorageMgmtNetworkVlanID}
+                  addresses:
+                    -
+                      ip_netmask: {get_param: StorageMgmtIpSubnet}
+
+            -
+              type: ovs_bridge
+              name: br-ex
               use_dhcp: false
               dns_servers: {get_param: DnsServers}
               addresses:
@@ -113,28 +140,8 @@ resources:
                 -
                   type: interface
                   name: ens3f1
-                  # force the MAC address of the bridge to this interface
                   primary: true
-                -
-                  type: vlan
-                  vlan_id: {get_param: StorageMgmtNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: StorageMgmtIpSubnet}
-                # Uncomment when including environments/network-management.yaml
-                # If setting default route on the Management interface, comment
-                # out the default route on the Control Plane.
-                #-
-                #  type: vlan
-                #  vlan_id: {get_param: ManagementNetworkVlanID}
-                #  addresses:
-                #    -
-                #      ip_netmask: {get_param: ManagementIpSubnet}
-                #  routes:
-                #    -
-                #      default: true
-                #      next_hop: {get_param: ManagementInterfaceDefaultRoute}
-
+        
 outputs:
   OS::stack_id:
     description: The OsNetConfigImpl resource.
