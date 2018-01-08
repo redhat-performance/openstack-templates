@@ -33,6 +33,10 @@ parameters:
     default: ''
     description: IP address/subnet on the management network
     type: string
+  ExternalNetworkVlanID:
+    default: 10
+    description: Vlan ID for the external network traffic.
+    type: number
   InternalApiNetworkVlanID:
     default: 20
     description: Vlan ID for the internal_api network traffic.
@@ -48,6 +52,10 @@ parameters:
   ManagementNetworkVlanID:
     default: 60
     description: Vlan ID for the management network traffic.
+    type: number
+  StorageMgmtNetworkVlanID:
+    default: 40
+    description: Vlan ID for the storage management network traffic.
     type: number
   ControlPlaneSubnetCidr: # Override this via parameter_defaults
     default: '24'
@@ -86,13 +94,29 @@ resources:
               members:
                 -
                   type: interface
-                  name: ens3f0
+                  name: enp131s0f0
+                  primary: true
                 -
                   type: vlan
                   vlan_id: {get_param: StorageNetworkVlanID}
                   addresses:
                     -
                       ip_netmask: {get_param: StorageIpSubnet}
+
+            -
+              type: ovs_bridge
+              name: br-tenant
+              members:
+                -
+                  type: interface
+                  name: ens3f0
+                  primary: true
+                -
+                  type: vlan
+                  vlan_id: {get_param: TenantNetworkVlanID}
+                  addresses:
+                    -
+                      ip_netmask: {get_param: TenantIpSubnet}
             -
               type: ovs_bridge
               name: br-ex
@@ -116,7 +140,6 @@ resources:
                 -
                   type: interface
                   name: ens3f1
-                  # force the MAC address of the bridge to this interface
                   primary: true
                 -
                   type: vlan
@@ -124,25 +147,7 @@ resources:
                   addresses:
                     -
                       ip_netmask: {get_param: InternalApiIpSubnet}
-                -
-                  type: vlan
-                  vlan_id: {get_param: TenantNetworkVlanID}
-                  addresses:
-                    -
-                      ip_netmask: {get_param: TenantIpSubnet}
-                # Uncomment when including environments/network-management.yaml
-                # If setting default route on the Management interface, comment
-                # out the default route on the Control Plane.
-                #-
-                #  type: vlan
-                #  vlan_id: {get_param: ManagementNetworkVlanID}
-                #  addresses:
-                #    -
-                #      ip_netmask: {get_param: ManagementIpSubnet}
-                #  routes:
-                #    -
-                #      default: true
-                #      next_hop: {get_param: ManagementInterfaceDefaultRoute}
+
 
 outputs:
   OS::stack_id:

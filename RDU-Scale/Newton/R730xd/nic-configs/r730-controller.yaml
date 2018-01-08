@@ -2,7 +2,7 @@ heat_template_version: 2015-04-30
 
 description: >
   Software Config to drive os-net-config to configure VLANs for the
-  compute role.
+  controller role.
 
 parameters:
   ControlPlaneIp:
@@ -124,7 +124,7 @@ resources:
                       ip_netmask: {get_param: TenantIpSubnet}
             -
               type: ovs_bridge
-              name: {get_input: bridge_name}
+              name: br-ex
               use_dhcp: false
               dns_servers: {get_param: DnsServers}
               addresses:
@@ -152,11 +152,6 @@ resources:
                   addresses:
                     -
                       ip_netmask: {get_param: ExternalIpSubnet}
-                  routes:
-                    -
-                      default: true
-                      next_hop: {get_param: ExternalInterfaceDefaultRoute}
-
                 
             -
               type: interface
