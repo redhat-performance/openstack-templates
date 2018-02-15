@@ -26,8 +26,8 @@ parameter_defaults:
   #GnocchiBackend: rbd
   ExtraConfig:
     #ceph::profile::params::fsid: eb2bb192-b1c9-11e6-9205-525400330667
-    ceph::profile::params::osd_pool_default_pg_num: 256
-    ceph::profile::params::osd_pool_default_pgp_num: 256
+    ceph::profile::params::osd_pool_default_pg_num: 666
+    ceph::profile::params::osd_pool_default_pgp_num: 666
     ceph::profile::params::osd_pool_default_size: 3
     ceph::profile::params::osd_pool_default_min_size: 2
     ceph::profile::params::osd_recovery_max_active: 1
