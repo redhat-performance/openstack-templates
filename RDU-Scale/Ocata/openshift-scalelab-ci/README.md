@@ -3,7 +3,7 @@
 These templates can be used for deploying an overcloud with the following deploy
 command:
 ```
-openstack overcloud deploy --templates -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml -e templates/network-environment.yaml -e templates/deploy.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/puppet-pacemaker.yaml -r templates/roles_data.yaml --ntp-server clock.redhat.comnstack-tripleo-heat-templates/environments/network-isolation.yaml -e templates/network-environment.yaml -e templates/deploy.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/puppet-pacemaker.yaml -r templates/roles_data.yaml --ntp-server clock.redhat.com
+openstack overcloud deploy --templates -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml -e templates/network-environment.yaml -e templates/deploy.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/puppet-pacemaker.yaml -r templates/roles_data.yaml --ntp-server clock.redhat.com -e /usr/share/openstack-tripleo-heat-templates/environments/network-isolation.yaml -e templates/network-environment.yaml -e templates/deploy.yaml -e /usr/share/openstack-tripleo-heat-templates/environments/puppet-pacemaker.yaml -r templates/roles_data.yaml --ntp-server clock.redhat.com
 
 ```
 
@@ -22,4 +22,5 @@ The hardware consists of the following machine types
 * R620
 * R620
 * R720xd
+* 1029U
 * 1029P
