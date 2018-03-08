@@ -1,0 +1,72 @@
+parameter_defaults:
+  DockerCephDaemonImage: docker-registry.engineering.redhat.com/ceph/rhceph-2-rhel7:latest
+  #DockerCephDaemonImage: docker-registry.engineering.redhat.com/ceph/rhceph-2-rhel7:pending
+  #DockerCephDaemonImage: ceph/daemon:tag-build-master-jewel-centos-7
+  #CephPoolDefaultPgNum: 512
+  CephAnsibleExtraConfig:
+    monitor_interface: vlan302
+    osd_objectstore: filestore
+    osd_scenario: non-collocated
+    ceph_conf_overrides:
+      global:
+        osd_pool_default_size: 3
+        #osd_pool_default_pg_num: 512
+  CephAnsibleDisksConfig:
+    devices:
+      - /dev/sdb
+      - /dev/sdd
+      - /dev/sde
+      - /dev/sdf
+      - /dev/sdg
+      - /dev/sdh
+      - /dev/sdi
+      - /dev/sdj
+      - /dev/sdl
+      - /dev/sdm
+      - /dev/sdn
+      - /dev/sdo
+      - /dev/sdp
+      - /dev/sdq
+      - /dev/sdr
+      - /dev/sds
+      - /dev/sdt
+      - /dev/sdv
+      - /dev/sdw
+      - /dev/sdx
+      - /dev/sdy
+      - /dev/sdz
+      - /dev/sdaa
+      - /dev/sdab
+      - /dev/sdae
+      - /dev/sdaf
+      - /dev/sdag
+      - /dev/sdah
+    dedicated_devices:
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1
+      - /dev/nvme0n1

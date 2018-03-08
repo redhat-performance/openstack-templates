@@ -1,0 +1,72 @@
+## A Heat environment file which can be used to set up storage
+## backends. Defaults to Ceph used as a backend for Cinder, Glance and
+## Nova ephemeral storage.
+resource_registry:
+  OS::TripleO::Services::CephMon: /usr/share/openstack-tripleo-heat-templates/docker/services/ceph-ansible/ceph-mon.yaml
+  OS::TripleO::Services::CephOSD: /usr/share/openstack-tripleo-heat-templates/docker/services/ceph-ansible/ceph-osd.yaml
+  OS::TripleO::Services::CephClient: /usr/share/openstack-tripleo-heat-templates/docker/services/ceph-ansible/ceph-client.yaml
+
+parameter_defaults:
+  CephPoolDefaultPgNum: 256
+  CinderEnableIscsiBackend: false
+  CinderEnableRbdBackend: true
+  CinderBackupBackend: ceph
+  NovaEnableRbdBackend: true
+  GlanceBackend: rbd
+  GnocchiBackend: rbd
+  CephAnsibleExtraConfig:
+    ceph_osd_docker_memory_limit: 3g
+  CephAnsibleDisksConfig:
+    devices:
+    - /dev/sdb
+    - /dev/sdc
+    - /dev/sdd
+    - /dev/sde
+    - /dev/sdf
+    - /dev/sdg
+    - /dev/sdh
+    - /dev/sdi
+    - /dev/sdj
+    - /dev/sdk
+    - /dev/sdl
+    - /dev/sdm
+    - /dev/sdn
+    - /dev/sdo
+    - /dev/sdp
+    - /dev/sdq
+    - /dev/sdr
+    - /dev/sds
+    - /dev/sdt
+    - /dev/sdu
+    - /dev/sdv
+    - /dev/sdw
+    - /dev/sdx
+    - /dev/sdy
+    - /dev/sdz
+    osd_scenario: non-collocated
+    dedicated_devices:
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1
+    - /dev/nvme0n1

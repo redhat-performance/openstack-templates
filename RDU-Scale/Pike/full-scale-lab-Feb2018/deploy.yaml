@@ -1,0 +1,35 @@
+parameter_defaults:
+  DnsServers: ["10.16.36.29","10.11.5.19"]
+
+  ControllerCount: 3
+  CephStorageCount: 18
+  R620ComputeCount: 23
+  R630ComputeCount:  23
+  6018rComputeCount: 1
+  R930ComputeCount: 1
+  1029pComputeCount: 0
+  1029uComputeCount: 1
+  1028rComputeCount: 1
+  R730ComputeCount: 1
+  ComputeCount: 0
+
+  ControllerSchedulerHints:
+    'capabilities:node': 'controller-%index%'
+  R630ComputeSchedulerHints:
+    'capabilities:node': 'r630-compute-%index%'
+  R620ComputeSchedulerHints:
+    'capabilities:node': 'r620-compute-%index%'
+  1028rComputeSchedulerHints:
+    'capabilities:node': '1028r-compute-%index%'
+  1029uComputeSchedulerHints:
+    'capabilities:node': '1029u-compute-%index%'
+  1029pComputeSchedulerHints:
+    'capabilities:node': '1029p-compute-%index%'
+  6018rComputeSchedulerHints:
+    'capabilities:node': '6018r-compute-%index%'
+  R930ComputeSchedulerHints:
+    'capabilities:node': 'r930-compute-%index%'
+  R730ComputeSchedulerHints:
+    'capabilities:node': 'r730-compute-%index%'
+  CephStorageSchedulerHints:
+    'capabilities:node': 'ceph-storage-%index%'

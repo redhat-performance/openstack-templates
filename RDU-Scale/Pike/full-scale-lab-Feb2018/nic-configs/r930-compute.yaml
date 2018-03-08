@@ -80,33 +80,35 @@ resources:
       config:
         os_net_config:
           network_config:
-           -
+            -
               type: ovs_bridge
               name: br-storage
               members:
                 -
                   type: interface
-                  name: enp94s0f0
+                  name: em1
+                  primary: true
                 -
                   type: vlan
                   vlan_id: {get_param: StorageNetworkVlanID}
                   addresses:
                     -
                       ip_netmask: {get_param: StorageIpSubnet}
-           -
+            -
               type: ovs_bridge
               name: br-tenant
               members:
                 -
                   type: interface
-                  name: enp94s0f2
+                  name: p1p1
+                  primary: true
                 -
                   type: vlan
                   vlan_id: {get_param: TenantNetworkVlanID}
                   addresses:
                     -
                       ip_netmask: {get_param: TenantIpSubnet}
-           -
+            -
               type: ovs_bridge
               name: br-ex
               use_dhcp: false
@@ -128,16 +130,17 @@ resources:
               members:
                 -
                   type: interface
-                  name: enp94s0f1
+                  name: em2
                   primary: true
-           -
+
+            -
               type: ovs_bridge
-              name: br-api
-              use_dhcp: false
+              name: br-internal
               members:
                 -
                   type: interface
-                  name: enp94s0f3
+                  name: p1p2
+                  primary: true
                 -
                   type: vlan
                   vlan_id: {get_param: InternalApiNetworkVlanID}
@@ -145,9 +148,7 @@ resources:
                     -
                       ip_netmask: {get_param: InternalApiIpSubnet}
 
-
 outputs:
   OS::stack_id:
     description: The OsNetConfigImpl resource.
     value: {get_resource: OsNetConfigImpl}
-
