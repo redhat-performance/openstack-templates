@@ -8,6 +8,6 @@ parameter_defaults:
   R620ComputeSchedulerHints:
     'capabilities:node': 'r620compute-%index%'
   P1029ComputeSchedulerHints:
-    'capabilities:node': '1029pcompute-%index%'
+    'capabilities:node': 'compute-%index%'
   CephStorageSchedulerHints:
     'capabilities:node': 'cephstorage-%index%'
