@@ -1,6 +1,8 @@
 resource_registry:
   OS::TripleO::Compute::Net::SoftwareConfig: /home/stack/templates/nic-configs/compute.yaml
   OS::TripleO::Controller::Net::SoftwareConfig: /home/stack/templates/nic-configs/controller.yaml
+  # DVR Port
+  OS::TripleO::Compute::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/external.yaml
 
 parameter_defaults:
   #NeutronExternalNetworkBridge: "''"
