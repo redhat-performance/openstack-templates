@@ -44,7 +44,7 @@ parameter_defaults:
   StorageAllocationPools: [{'start': '172.18.0.3', 'end': '172.18.255.254'}]
   StorageMgmtAllocationPools: [{'start': '172.19.0.3', 'end': '172.19.255.254'}]
   ManagementAllocationPools: [{'start': '172.20.0.3', 'end': '172.20.255.254'}]
-  ExternalAllocationPools: [{'start': '172.21.0.3', 'end': '172.21.255.254'}]
+  ExternalAllocationPools: [{'start': '172.21.0.3', 'end': '172.21.0.99'}]
   # Set to the router gateway on the external network
   ExternalInterfaceDefaultRoute: 172.21.0.1
   PublicVirtualFixedIPs: [{'ip_address':'172.21.0.2'}]
