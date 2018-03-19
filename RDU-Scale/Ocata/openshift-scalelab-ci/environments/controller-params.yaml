@@ -1,4 +1,5 @@
 parameter_defaults:
+  HeatMaxResourcesPerStack: -1
   NovaSchedulerDefaultFilters: ['RetryFilter','AvailabilityZoneFilter','RamFilter','DiskFilter','ComputeFilter','ComputeCapabilitiesFilter','ImagePropertiesFilter','ServerGroupAntiAffinityFilter','ServerGroupAffinityFilter','PciPassthroughFilter']
   NovaSchedulerAvailableFilters: ['nova.scheduler.filters.all_filters']
   ControllerExtraConfig:
