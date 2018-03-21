@@ -8,4 +8,5 @@ parameter_defaults:
         product_id: 'a804'
         vendor_id: '144d'
         device_type: 'type-PCI'
-
+    # Increasing the number of items in a single response.
+    nova::controller::max_limit: 4000
