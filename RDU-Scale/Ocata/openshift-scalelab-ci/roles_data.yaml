@@ -219,7 +219,7 @@
 
 - name: P1029Compute
   CountDefault: 0
-  HostnameFormatDefault: '%stackname%-1029pcompute-%index%'
+  HostnameFormatDefault: '%stackname%-compute-%index%'
   disable_upgrade_deployment: True
   ServicesDefault:
     - OS::TripleO::Services::CACerts
