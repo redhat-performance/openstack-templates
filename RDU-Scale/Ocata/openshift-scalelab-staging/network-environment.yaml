@@ -1,0 +1,41 @@
+resource_registry:
+  OS::TripleO::Controller::Net::SoftwareConfig: /home/stack/templates/nic-configs/1029p-controller.yaml
+  OS::TripleO::Compute::Net::SoftwareConfig: /home/stack/templates/nic-configs/1029p-compute.yaml
+  # OS::TripleO::CephStorage::Net::SoftwareConfig: /home/stack/templates/nic-configs/1029p-cephstorage.yaml
+
+
+
+parameter_defaults:
+  NeutronExternalNetworkBridge: "''"
+  InternalApiNetCidr: 172.16.0.0/16
+  TenantNetCidr: 172.17.0.0/16
+  StorageNetCidr: 172.18.0.0/16
+  StorageMgmtNetCidr: 172.19.0.0/16
+  ManagementNetCidr: 172.20.0.0/16
+  # ExternalNetCidr: 172.21.0.0/16
+  ExternalNetCidr: 10.12.95.192/26
+  ControlPlaneSubnetCidr: 24
+  InternalApiAllocationPools: [{'start': '172.16.0.3', 'end': '172.16.255.254'}]
+  TenantAllocationPools: [{'start': '172.17.0.3', 'end': '172.17.255.254'}]
+  StorageAllocationPools: [{'start': '172.18.0.3', 'end': '172.18.255.254'}]
+  StorageMgmtAllocationPools: [{'start': '172.19.0.3', 'end': '172.19.255.254'}]
+  ManagementAllocationPools: [{'start': '172.20.0.3', 'end': '172.20.255.254'}]
+  # ExternalAllocationPools: [{'start': '172.21.0.3', 'end': '172.21.0.99'}]
+  ExternalAllocationPools: [{'start': '10.12.95.193', 'end': '10.12.95.199'}]
+  # Set to the router gateway on the external network
+  ExternalInterfaceDefaultRoute: 10.12.95.193
+  #PublicVirtualFixedIPs: [{'ip_address':'172.21.0.2'}]
+  PublicVirtualFixedIPs: [{'ip_address':'10.12.95.194'}]
+  # Gateway router for the provisioning network (or Undercloud IP)
+  ControlPlaneDefaultRoute: 192.0.2.1
+  # The IP address of the EC2 metadata server. Generally the IP of the Undercloud
+  EC2MetadataIp: 192.0.2.1
+  # Define the DNS servers (maximum 2) for the overcloud nodes
+  DnsServers: ["10.11.5.19"]
+  InternalApiNetworkVlanID: 301
+  StorageNetworkVlanID: 302
+  StorageMgmtNetworkVlanID: 303
+  TenantNetworkVlanID: 304
+  ManagementNetworkVlanID: 305
+  ExternalNetworkVlanID: 620
+  # Set to "br-ex" if using floating IPs on native VLAN on bridge br-ex
