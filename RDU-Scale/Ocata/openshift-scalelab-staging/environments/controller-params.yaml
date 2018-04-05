@@ -1,0 +1,11 @@
+parameter_defaults:
+  HeatMaxResourcesPerStack: -1
+  NovaSchedulerDefaultFilters: ['RetryFilter','AvailabilityZoneFilter','RamFilter','DiskFilter','ComputeFilter','ComputeCapabilitiesFilter','ImagePropertiesFilter','ServerGroupAntiAffinityFilter','ServerGroupAffinityFilter','PciPassthroughFilter']
+  NovaSchedulerAvailableFilters: ['nova.scheduler.filters.all_filters']
+  ControllerExtraConfig:
+    nova::api::pci_alias:
+      - name: 'nvme'
+        product_id: 'a804'
+        vendor_id: '144d'
+        device_type: 'type-PCI'
+

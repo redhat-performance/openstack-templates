@@ -1,0 +1,11 @@
+parameter_defaults:
+  ExtraConfig:
+    neutron::notification_driver: noop
+    nova::notification_driver: noop
+    keystone::notification_driver: noop
+    glance::notify::rabbitmq::notification_driver: noop
+    cinder::ceilometer::notification_driver: noop
+    manila::notification_driver: noop
+    sahara::notify::notification_driver: noop
+    barbican::api::notification_driver: noop
+    ceilometer::notification_driver: noop

@@ -1,0 +1,3 @@
+parameter_defaults:
+   ComputeKernelArgs: "intel_iommu=on iommu=pt"
+   ComputeHostnameFormat: "1029p"
