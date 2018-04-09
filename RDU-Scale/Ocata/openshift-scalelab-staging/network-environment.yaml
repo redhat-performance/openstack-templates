@@ -1,8 +1,12 @@
 resource_registry:
   OS::TripleO::Controller::Net::SoftwareConfig: /home/stack/templates/nic-configs/1029p-controller.yaml
   OS::TripleO::Compute::Net::SoftwareConfig: /home/stack/templates/nic-configs/1029p-compute.yaml
-  # OS::TripleO::CephStorage::Net::SoftwareConfig: /home/stack/templates/nic-configs/1029p-cephstorage.yaml
-
+  OS::TripleO::CephStorage::Net::SoftwareConfig: /home/stack/templates/nic-configs/1029p-cephstorage.yaml
+  OS::TripleO::P1029Compute::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
+  OS::TripleO::P1029Compute::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/internal_api.yaml
+  OS::TripleO::P1029Compute::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage.yaml
+  OS::TripleO::P1029Compute::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
+  OS::TripleO::P1029Compute::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
 
 
 parameter_defaults:
