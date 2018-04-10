@@ -80,11 +80,6 @@ resources:
       config:
         os_net_config:
           network_config:
-            # -
-            #   type: interface
-            #   name: eno1
-            #   use_dhcp: true
-            #   primary: true
             -
               type: ovs_bridge
               name: br-storage
@@ -143,20 +138,6 @@ resources:
                   addresses:
                     -
                       ip_netmask: {get_param: InternalApiIpSubnet}
-            # -
-            #   type: ovs_bridge
-            #   name: br-api
-            #   members:
-            #     -
-            #       type: interface
-            #       name: enp94s0f3
-            #       primary: true
-            #     -
-            #       type: vlan
-            #       vlan_id: {get_param: InternalApiNetworkVlanID}
-            #       addresses:
-            #         -
-            #           ip_netmask: {get_param: InternalApiIpSubnet}
 
 outputs:
   OS::stack_id:
