@@ -107,6 +107,12 @@ resources:
                   addresses:
                     -
                       ip_netmask: {get_param: StorageIpSubnet}
+                -
+                  type: vlan
+                  vlan_id: {get_param: StorageMgmtNetworkVlanID}
+                  addresses:
+                    -
+                      ip_netmask: {get_param: StorageMgmtIpSubnet}
             -
               type: ovs_bridge
               name: br-tenant
@@ -151,21 +157,6 @@ resources:
                   addresses:
                     -
                       ip_netmask: {get_param: InternalApiIpSubnet}
-
-            # -
-            #   type: ovs_bridge
-            #   name: br-management
-            #   members:
-            #     -
-            #       type: interface
-            #       name: enp216s0f1 # not an vaild adapter name for 1029p
-            #       primary: true
-            #     -
-            #       type: vlan
-            #       vlan_id: {get_param: StorageMgmtNetworkVlanID}
-            #       addresses:
-            #         -
-            #           ip_netmask: {get_param: StorageMgmtIpSubnet}
 
 
 outputs:
