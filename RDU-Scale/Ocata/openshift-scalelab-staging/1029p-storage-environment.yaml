@@ -36,15 +36,9 @@ parameter_defaults:
     #ceph::profile::params::osd_journal_size: 10240
   CephPools:
     vms:
-      pg_num: 1024
-      pgp_num: 1024
+      pg_num: 64
+      pgp_num: 64
   CephStorageExtraConfig:
     ceph::profile::params::osds:
       '/dev/nvme0n1':
         journal: '/dev/nvme0n1'
-      # '/dev/nvme1n1':
-      #   journal: '/dev/nvme1n1'
-      # '/dev/nvme2n1':
-      #   journal: '/dev/nvme2n1'
-      # '/dev/nvme3n1':
-      #   journal: '/dev/nvme3n1'
