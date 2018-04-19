@@ -35,9 +35,28 @@ parameter_defaults:
     ceph::profile::params::osd_recovery_op_priority: 1
     #ceph::profile::params::osd_journal_size: 10240
   CephPools:
+    backup:
+      pg_num: 8
+      pgp_num: 8
+    images:
+      pg_num: 64
+      pgp_num: 64
+    manilla_:
+      pg_num: 8
+      pgp_num: 8
+    manila_:
+      pg_num: 8
+      pgp_num: 8
+    metrics:
+      pg_num: 8
+      pgp_num: 8
     vms:
       pg_num: 64
       pgp_num: 64
+    volume:
+      pg_num: 8
+      pgp_num: 8
+
   CephStorageExtraConfig:
     ceph::profile::params::osds:
       '/dev/nvme0n1':
