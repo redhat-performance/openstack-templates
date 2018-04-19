@@ -25,20 +25,38 @@ parameter_defaults:
   ## Gnocchi backend can be either 'rbd' (Ceph), 'swift' or 'file'.
   #GnocchiBackend: rbd
   ExtraConfig:
-    #ceph::profile::params::fsid: eb2bb192-b1c9-11e6-9205-525400330667
-    #ceph::profile::params::osd_pool_default_pg_num: 256
-    #ceph::profile::params::osd_pool_default_pgp_num: 256
     ceph::profile::params::osd_pool_default_size: 3
     ceph::profile::params::osd_pool_default_min_size: 2
     ceph::profile::params::osd_recovery_max_active: 1
     ceph::profile::params::osd_max_backfills: 1
     ceph::profile::params::osd_recovery_op_priority: 1
-    #ceph::profile::params::osd_journal_size: 10240
+  # OpenStack Ocata creates 8 ceph osd pools:
+  # rbd, backups, images, manila_data, manila_metadata, metrics, vms, volumes
   CephPools:
+    # Can not change rdb group.
+    backups:
+      pg_num: 64
+      pgp_num: 64
+    images:
+      pg_num: 512
+      pgp_num: 512
+    manila_data:
+      pg_num: 64
+      pgp_num: 64
+    manila_metadata:
+      pg_num: 64
+      pgp_num: 64
+    metrics:
+      pg_num: 64
+      pgp_num: 64
     vms:
-      pg_num: 1024
-      pgp_num: 1024
+      pg_num: 512
+      pgp_num: 512
+    volumes:
+      pg_num: 64
+      pgp_num: 64
   CephStorageExtraConfig:
+    # There are 4 OSDs per 1029u.
     ceph::profile::params::osds:
       '/dev/nvme0n1':
         journal: '/dev/nvme0n1'
