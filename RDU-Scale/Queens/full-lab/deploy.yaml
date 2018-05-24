@@ -1,0 +1,36 @@
+parameter_defaults:
+  ControllerCount: 3
+  ComputeCount: 0
+#  R630ComputeCount: 20
+  R730ComputeCount: 0
+#  R620ComputeCount: 80
+  R930ComputeCount: 0
+  6018rComputeCount: 0
+  1029pComputeCount: 0
+  1029uComputeCount: 0
+  6048rComputeCount: 0
+  ComputeHCICount: 8
+#  CephStorageCount: 10 
+  ObjectStorageCount: 0
+
+# Flavor matching
+
+  OvercloudControllerFlavor: control
+  OvercloudComputeFlavor: compute
+  OvercloudCephStorageFlavor: ceph-storage
+  OvercloudComputeHCIFlavor: ceph-storage
+  OvercloudR630ComputeFlavor: r630-compute
+  OvercloudR730ComputeFlavor: r730-compute
+  OvercloudR620ComputeFlavor: r620-compute
+  OvercloudR930ComputeFlavor: r930-compute
+  Overcloud1029pComputeFlavor: 1029p-compute
+  Overcloud1029uComputeFlavor: 1029u-compute
+  Overcloud6048rComputeFlavor: 6048r-compute
+  Overcloud6018rComputeFlavor: 6018r-compute
+
+# HCI Configuration
+
+  ComputeHCIParameters:
+    NovaReservedHostMemory: 181000
+  ComputeHCIExtraConfig:
+    nova::cpu_allocation_ratio: 8.2 
