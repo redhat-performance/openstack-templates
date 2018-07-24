@@ -1,0 +1,2 @@
+git clone https://github.com/xbezdick/hackfest.git
+ansible-playbook -i $(infrared workspace inventory) hackfest/minor/minor.yml

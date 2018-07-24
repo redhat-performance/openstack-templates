@@ -1,0 +1,112 @@
+#!/bin/bash
+# TODO: obviously ansible
+HOST=
+PASSWORD=
+CLOUD=
+set -x
+
+time ir foreman --user ${CLOUD} --password ${PASSWORD} --url https://foreman.rdu.openstack.engineering.redhat.com --strategy ipmi --host-ipmi-username quads --host-ipmi-password ${PASSWORD} --host-password 100yard- --medium-id 9 --os-id 1 -vvv --wait 600 --ping-deadline 300 --roles baremetal,undercloud,tester --host-key ${HOME}/.ssh/id_rsa --host-ipmi-address mgmt-${HOST} --host-address ${HOST}  -o provision.yaml 
+
+rm -rf ${HOME}/.ssh/known_hosts
+ssh-keyscan ${HOST} >> ~/.ssh/known_hosts
+sshpass -f ${HOME}/pwd ssh-copy-id -i ~/.ssh/id_rsa.pub root@${HOST}
+
+# host type dependant cleanup
+# P1029
+#ssh -q -o StrictHostKeyChecking=no root@${HOST} '
+#ifdown  enp94s0f0.101 enp94s0f0.200 enp94s0f0 enp94s0f1.102 enp94s0f1.200 enp94s0f1 enp94s0f2.103 enp94s0f2.200 enp94s0f2 enp94s0f3.104 enp94s0f3.200 enp94s0f3
+#'
+# R620
+ssh -q -o StrictHostKeyChecking=no root@${HOST} '
+for net in em1.103 em1.200 em1 em2.104 em2.200 em2 p2p3.101 p2p3.200 p2p3 p2p4.102 p2p4.200
+do
+  echo "Shutting down ${net}"
+  ip link set dev ${net} down
+  rm -rf /etc/sysconfig/network-scripts/ifcfg-${net}
+done
+
+'
+scp ${HOME}/openstack-templates/RDU-Scale/ffwd/undercloud_hiera_override.yaml root@${HOST}:/root/
+ssh -q -o StrictHostKeyChecking=no root@${HOST} '
+chmod +x /root
+chmod 755 /root/undercloud_hiera_override.yaml
+'
+
+time ir tripleo-undercloud --config-file  ${HOME}/openstack-templates/RDU-Scale/ffwd/undercloud.conf -o undercloud-install.yml --version 10 --images-update no  --images-task rpm --mirror bos --ssl True --build z5
+# workaround for failed infrared
+
+ssh -q -o StrictHostKeyChecking=no root@${HOST} '
+sed -i -e "/MaxSessions/d" /etc/ssh/sshd_config
+sed -i -e "/MaxStartups/d" /etc/ssh/sshd_config
+echo "MaxSessions 155" >> /etc/ssh/sshd_config
+echo "MaxStartups 60:100:300" >> /etc/ssh/sshd_config
+systemctl reload sshd
+'
+ssh -q -o StrictHostKeyChecking=no root@${HOST} '
+cat <<EOF > /etc/sysconfig/network-scripts/ifcfg-vlan10 
+DEVICE=vlan10
+ONBOOT=yes
+HOTPLUG=no
+TYPE=OVSIntPort
+OVS_BRIDGE=br-ctlplane
+OVS_OPTIONS="tag=10"
+BOOTPROTO=static
+IPADDR=172.21.0.1
+PREFIX=24
+NM_CONTROLLED=no
+EOF
+
+ifup vlan10
+
+RULE="-s 172.21.0.0/16 ! -d 172.21.0.0/16 -j MASQUERADE"
+if ! sudo iptables -t nat -C BOOTSTACK_MASQ $RULE; then
+    sudo iptables -t nat -A BOOTSTACK_MASQ $RULE
+    sudo sh -c "iptables-save > /etc/sysconfig/iptables"
+fi
+
+RULE="-s 172.21.0.0/16 -j ACCEPT"
+if ! sudo iptables -t filter -C INPUT $RULE; then
+    POSITION=$(sudo iptables -L --line-numbers | grep REJECT | awk "{print \$1}" | head -n 1)
+    sudo iptables -t filter -I INPUT $POSITION $RULE
+    sudo sh -c "iptables-save > /etc/sysconfig/iptables"
+fi
+
+'
+
+scp ~/instackenv.json stack@${HOST}:/home/stack/
+ssh -q -o StrictHostKeyChecking=no stack@${HOST} '
+source ~/stackrc
+openstack baremetal import --json ~/instackenv.json
+openstack baremetal configure boot
+'
+
+time ir tripleo-overcloud --deployment-files ${HOME}/openstack-templates/RDU-Scale/ffwd/ --deploy yes --version 10 --introspect no --instackenv-file ${HOME}/instackenv.json --overcloud-script ${HOME}/openstack-templates/RDU-Scale/ffwd/overcloud_deploy.sh
+
+ssh -q -o StrictHostKeyChecking=no stack@${HOST} '
+source ~/overcloudrc
+openstack network create public --external --provider-network-type vlan --provider-physical-network datacentre --provider-segment 10  
+openstack subnet create public --network public --dhcp --allocation-pool start=172.21.0.100,end=172.21.250.250 --gateway 172.21.0.1 --subnet-range 172.21.0.0/16
+neutron subnet-update public --dns-nameserver 10.12.64.161
+'
+
+ssh -q -o StrictHostKeyChecking=no stack@${HOST} '
+sudo yum -y install python-virtualenv gcc-c++ gcc cpp openssl-devel
+virtualenv venv
+. venv/bin/activate
+pip install setuptools -U
+pip install cffi -U
+pip install functools32
+pip install pyshaker
+wget http://elk.browbeatproject.org:9090/~smalleni/shaker-image.qcow2
+source ~/overcloudrc.v3
+openstack image create --public --file shaker-image.qcow2 --disk-format qcow2 shaker-image
+openstack flavor create --ram 512 --disk 3 --vcpus 1 shaker-flavor
+openstack quota set --cores -1 --instances -1 --volumes -1 \
+                    --networks -1 --subnets -1 --ports -1 --routers -1 \
+                    --ram -1 --secgroups -1 --fixed-ips -1 \
+                    --floating-ips -1  --key-pairs -1 --snapshots -1  admin
+'
+ssh -q -o StrictHostKeyChecking=no stack@${HOST} '                                                                     
+source ~/stackrc
+for i in `nova list|awk "/ACTIVE/ {print \\\$(NF-1)}" |awk -F"=" "{print \\\$NF}"`; do echo $i; ssh -o StrictHostKeyChecking=no heat-admin@$i "sudo mkdir -p /etc/systemd/system/ovs-vswitchd.service.d/ ; echo -e \"[Service]\nLimitNOFILE=262144\" | sudo tee /etc/systemd/system/ovs-vswitchd.service.d/limit_no_file.conf ; sudo systemctl daemon-reload ; sudo systemctl restart openvswitch; sudo sysctl -w  fs.inotify.max_user_instances=4096 "; done
+'
