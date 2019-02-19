@@ -1,0 +1,37 @@
+resource_registry:
+  OS::TripleO::Controller::Net::SoftwareConfig: nic-configs/controller.yaml
+  OS::TripleO::Compute::Net::SoftwareConfig: nic-configs/compute.yaml
+  
+ 
+
+parameter_defaults:
+  NeutronExternalNetworkBridge: "''"
+  InternalApiNetCidr: 172.16.0.0/16
+  TenantNetCidr: 172.17.0.0/16
+  StorageNetCidr: 172.18.0.0/16
+  StorageMgmtNetCidr: 172.19.0.0/16
+  ManagementNetCidr: 172.20.0.0/16
+  ExternalNetCidr: 172.21.0.0/16
+  ControlPlaneSubnetCidr: '24'
+  InternalApiAllocationPools: [{'start': '172.16.0.10', 'end': '172.16.1.254'}]
+  TenantAllocationPools: [{'start': '172.17.0.10', 'end': '172.17.1.254'}]
+  StorageAllocationPools: [{'start': '172.18.0.10', 'end': '172.18.1.254'}]
+  StorageMgmtAllocationPools: [{'start': '172.19.0.10', 'end': '172.19.1.254'}]
+  ManagementAllocationPools: [{'start': '172.20.0.10', 'end': '172.20.1.254'}]
+  ExternalAllocationPools: [{'start': '172.21.0.10', 'end': '172.21.1.254'}]
+  # Set to the router gateway on the external network
+  ExternalInterfaceDefaultRoute: 172.21.0.1
+  #PublicVirtualFixedIPs: [{'ip_address':'172.21.0.10'}]
+  # Gateway router for the provisioning network (or Undercloud IP)
+  ControlPlaneDefaultRoute: 192.168.24.1
+  # The IP address of the EC2 metadata server. Generally the IP of the Undercloud
+  EC2MetadataIp: 192.168.24.1
+  # Define the DNS servers (maximum 2) for the overcloud nodes
+  DnsServers: ["10.11.5.19"]
+  InternalApiNetworkVlanID: 301
+  StorageNetworkVlanID: 302
+  StorageMgmtNetworkVlanID: 303
+  TenantNetworkVlanID: 304
+  ManagementNetworkVlanID: 305
+  ExternalNetworkVlanID: 10
+  # Set to "br-ex" if using floating IPs on native VLAN on bridge br-ex
