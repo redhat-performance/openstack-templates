@@ -1,0 +1,30 @@
+
+parameter_defaults:
+  ControllerCount: 3
+  p1029ComputeCount: 51
+  u1029ComputeCount: 49
+  ms5039ComputeCount: 60
+  r620ComputeCount: 0
+  p6049ComputeCount: 0
+  r630ComputeCount: 45
+  r6048ComputeCount: 0
+  r6018ComputeCount: 0
+  r730xdComputeCount: 0
+  r930ComputeCount: 0
+# can set to 92 later
+
+# Flavor matching
+
+  OvercloudControllerFlavor: control
+  Overcloudp1029ComputeFlavor: 1029p-compute
+  Overcloudu1029ComputeFlavor: 1029u-compute
+  Overcloudms5039ComputeFlavor: 5039ms-compute
+  Overcloudr6048ComputeFlavor: 6048r-compute
+  Overcloudr6018ComputeFlavor: 6018r-compute
+  Overcloudp6049ComputeFlavor: 6049p-compute
+  Overcloudr620ComputeFlavor: r620-compute
+  Overcloudr630ComputeFlavor: r630-compute
+  Overcloudr730xdComputeFlavor: r730xd-compute
+  Overcloudr930ComputeFlavor: r930-compute
+
+

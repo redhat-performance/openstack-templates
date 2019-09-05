@@ -1,0 +1,8 @@
+parameter_defaults:
+  NeutronServicePlugins: qos,router,trunk
+  NeutronVniRanges: ["1:65536", ]
+  ControllerExtraConfig:
+    neutron::policy::policies:
+      neutron-create_router:external_gateway_info:enable_snat:
+        key: 'create_router:external_gateway_info:enable_snat'
+        value: 'rule:regular_user'
