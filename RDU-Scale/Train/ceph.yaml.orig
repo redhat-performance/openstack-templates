@@ -1,0 +1,26 @@
+parameter_defaults:
+  CephAnsibleDisksConfig:
+    devices:
+      - /dev/nvme0n1
+      - /dev/nvme1n1
+      - /dev/nvme2n1
+      - /dev/nvme3n1
+    osd_scenario: lvm
+    osd_objectstore: bluestore
+  CephPools:
+    - name: cinder-backup
+      pg_num: 32
+      pgp_num: 32
+      application: rbd
+    - name: cinder-volumes
+      pg_num: 512
+      pgp_num: 512
+      application: rbd
+    - name: ephemeral-vms
+      pg_num: 256
+      pgp_num: 256
+      application: rbd
+    - name: glance-images
+      pg_num: 64
+      pgp_num: 64
+      application: rbd

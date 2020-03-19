@@ -1,0 +1,19 @@
+parameter_defaults:
+  ControllerCount: 3
+  ComputeCount: 0
+  u1029ComputeCount: 54
+  utn1029ComputeCount: 22
+  p1029ComputeCount: 89
+  ms5039ComputeCount: 230
+  r630ComputeCount: 51
+  r620ComputeCount: 55
+  CephStorageCount: 3 
+  OvercloudControllerFlavor: control
+  OvercloudComputeFlavor: compute
+  Overcloudu1029ComputeFlavor: 1029u-compute
+  Overcloudutn1029ComputeFlavor: 1029utn-compute
+  Overcloudp1029ComputeFlavor: 1029p-compute
+  Overcloudms5039ComputeFlavor: 5039ms-compute
+  Overcloudr630ComputeFlavor: r630-compute
+  Overcloudr620ComputeFlavor: r620-compute
+  OvercloudCephStorageFlavor: ceph-storage

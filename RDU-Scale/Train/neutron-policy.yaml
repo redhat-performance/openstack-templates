@@ -1,0 +1,7 @@
+parameter_defaults:
+  ControllerExtraConfig:
+    neutron::policy::policies:
+      neutron-create_router:external_gateway_info:enable_snat:
+        key: 'create_router:external_gateway_info:enable_snat'
+        value: 'rule:regular_user'
+

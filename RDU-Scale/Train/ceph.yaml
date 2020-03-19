@@ -1,0 +1,16 @@
+parameter_defaults:
+  CephPoolDefaultSize: 3
+  # when deploying a small number of osd's - < 12), it's necessary to decrease the default pg_num from 128 to get past the max 200pgs/per osd  limitation
+  CephPoolDefaultPgNum: 32
+  CephAnsiblePlaybookVerbosity: 1
+  CephAnsibleDisksConfig:
+    devices:
+      - /dev/nvme0n1
+      - /dev/nvme1n1
+      - /dev/nvme2n1
+      - /dev/nvme3n1
+# the following two parameters are the defaults. Just included them here for info
+    osd_scenario: lvm
+    osd_objectstore: bluestore
+  CephAnsibleExtraConfig:
+    osd_pool_default_autoscale_mode: on
