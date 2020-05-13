@@ -1,0 +1,59 @@
+resource_registry:
+  OS::TripleO::Controller::Net::SoftwareConfig: /home/stack/ffwd/newton/nic-configs/r620-controller.yaml
+  #OS::TripleO::Controller::Net::SoftwareConfig: /home/stack/ffwd/newton/nic-configs/1029p-controller.yaml
+  OS::TripleO::CephStorage::Net::SoftwareConfig: /home/stack/ffwd/newton/nic-configs/r620-cephstorage.yaml
+  #OS::TripleO::CephStorage::Net::SoftwareConfig: /home/stack/ffwd/newton/nic-configs/1029p-cephstorage.yaml
+  OS::TripleO::P1029Compute::Net::SoftwareConfig: /home/stack/ffwd/newton/nic-configs/1029p-compute.yaml
+  OS::TripleO::P1029Compute::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
+  OS::TripleO::P1029Compute::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/internal_api.yaml
+  OS::TripleO::P1029Compute::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage.yaml
+  OS::TripleO::P1029Compute::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
+  OS::TripleO::P1029Compute::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
+  OS::TripleO::R630Compute::Net::SoftwareConfig: /home/stack/ffwd/newton/nic-configs/r630-compute.yaml
+  OS::TripleO::R630Compute::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
+  OS::TripleO::R630Compute::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/internal_api.yaml
+  OS::TripleO::R630Compute::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage.yaml
+  OS::TripleO::R630Compute::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
+  OS::TripleO::R630Compute::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
+  OS::TripleO::R620Compute::Net::SoftwareConfig: /home/stack/ffwd/newton/nic-configs/r620-compute.yaml
+  OS::TripleO::R620Compute::Ports::ExternalPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
+  OS::TripleO::R620Compute::Ports::InternalApiPort: /usr/share/openstack-tripleo-heat-templates/network/ports/internal_api.yaml
+  OS::TripleO::R620Compute::Ports::StoragePort: /usr/share/openstack-tripleo-heat-templates/network/ports/storage.yaml
+  OS::TripleO::R620Compute::Ports::StorageMgmtPort: /usr/share/openstack-tripleo-heat-templates/network/ports/noop.yaml
+  OS::TripleO::R620Compute::Ports::TenantPort: /usr/share/openstack-tripleo-heat-templates/network/ports/tenant.yaml
+
+
+
+parameter_defaults:
+  NeutronBridgeMappings: "datacentre:br-ex"
+  NeutronExternalNetworkBridge: ""
+  InternalApiNetCidr: 172.26.0.0/16
+  TenantNetCidr: 172.27.0.0/16
+  StorageNetCidr: 172.28.0.0/16
+  StorageMgmtNetCidr: 172.29.0.0/16
+  ManagementNetCidr: 172.30.0.0/16
+  ExternalNetCidr: 172.21.0.0/16
+  ControlPlaneSubnetCidr: 16
+  InternalApiAllocationPools: [{'start': '172.26.0.3', 'end': '172.26.255.254'}]
+  TenantAllocationPools: [{'start': '172.27.0.3', 'end': '172.27.255.254'}]
+  StorageAllocationPools: [{'start': '172.28.0.3', 'end': '172.28.255.254'}]
+  StorageMgmtAllocationPools: [{'start': '172.29.0.3', 'end': '172.29.255.254'}]
+  ManagementAllocationPools: [{'start': '172.30.0.3', 'end': '172.30.255.254'}]
+  ExternalAllocationPools: [{'start': '172.21.0.3', 'end': '172.21.250.250'}]
+  # Set to the router gateway on the external network
+  ExternalInterfaceDefaultRoute: 172.21.0.1
+  PublicVirtualFixedIPs: [{'ip_address':'172.21.0.10'}]
+  # Gateway router for the provisioning network (or Undercloud IP)
+  ControlPlaneDefaultRoute: 172.31.0.1
+  # The IP address of the EC2 metadata server. Generally the IP of the Undercloud
+  EC2MetadataIp: 172.31.0.1
+  # Define the DNS servers (maximum 2) for the overcloud nodes
+  DnsServers: ["10.11.5.19"]
+  InternalApiNetworkVlanID: 301
+  StorageNetworkVlanID: 302
+  StorageMgmtNetworkVlanID: 303
+  TenantNetworkVlanID: 304
+  ManagementNetworkVlanID: 305
+  ExternalNetworkVlanID: 10
+  NtpServer: ["clock.redhat.com"]
+  # Set to "br-ex" if using floating IPs on native VLAN on bridge br-ex

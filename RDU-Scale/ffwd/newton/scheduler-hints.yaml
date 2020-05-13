@@ -1,0 +1,11 @@
+parameter_defaults:
+  ControllerSchedulerHints:
+    'capabilities:node': 'controller-%index%'
+  P1029ComputeSchedulerHints:
+    'capabilities:node': '1029p-compute-%index%'
+  R630ComputeSchedulerHints:
+    'capabilities:node': 'r630-compute-%index%'
+  R620ComputeSchedulerHints:
+    'capabilities:node': 'r620-compute-%index%'
+  CephStorageSchedulerHints:
+    'capabilities:node': 'cephstorage-%index%'

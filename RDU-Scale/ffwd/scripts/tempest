@@ -1,0 +1,17 @@
+#!/bin/bash
+set -x
+MIRROR="bos"
+    IR_HOSTS=$(infrared workspace inventory)
+    # overcloudrc has to be available locally
+    ansible -i $IR_HOSTS undercloud \
+        -m fetch \
+        -a 'dest=./overcloudrc.v3 src=/home/stack/overcloudrc.v3 flat=yes'
+     
+    ir tempest --openstack-installer tripleo \
+        --tests all \
+        --setup rpm \
+        --openstack-version 10 \
+        --openstackrc ./overcloudrc.v3 \
+        --results-formats junitxml,html \
+        --config-options "image.http_image=http://rhos-qe-mirror-$MIRROR.usersys.redhat.com/images/cirros-0.3.5-x86_64-disk.img"
+

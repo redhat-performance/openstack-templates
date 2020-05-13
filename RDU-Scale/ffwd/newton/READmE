@@ -1,0 +1,2 @@
+ num=0 ; grep node cloud11_instackenv.json | grep r620 | cut -d ':' -f3 | cut -d ',' -f1 | grep compute | while read i; do  CUT=$(echo $i | cut -d '-' -f1,2); sed -i -e "s/${i}/${CUT}-${num}/" cloud11_instackenv.json ; let num=num+1; done
+

@@ -1,0 +1,6 @@
+Use:
+https://infrared.readthedocs.io/en/stable/
+Testing:
+ir tempest ...
+http://pyshaker.readthedocs.io/en/latest/installation.html
+pip install psutil

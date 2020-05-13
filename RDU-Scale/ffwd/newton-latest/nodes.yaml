@@ -1,0 +1,12 @@
+parameter_defaults:
+   OvercloudP1029ComputeFlavor: baremetal
+   P1029ComputeCount: 0
+   OvercloudR630ComputeFlavor: baremetal
+   R630ComputeCount: 0
+   OvercloudR620ComputeFlavor: baremetal
+   R620ComputeCount: 20
+   OvercloudControlFlavor: baremetal
+   ControllerCount: 3
+   OvercloudCephStorageFlavor: baremetal
+   CephStorageCount: 3
+
